@@ -14,18 +14,23 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::get('/projects',[ProjectController::class,'index']);
-Route::get('/projects/create',[ProjectController::class,'create']);
-Route::post('/projects',[ProjectController::class,'store']);
-Route::get('/projects/{project}',[ProjectController::class,'show']);
-Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
-Route::put('/projects/{project}',[ProjectController::class,'update']);
-Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/projects',[ProjectController::class,'index']);
+    Route::get('/projects/create',[ProjectController::class,'create']);
+    Route::post('/projects',[ProjectController::class,'store']);
+    Route::get('/projects/{project}',[ProjectController::class,'show']);
+    Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
+    Route::put('/projects/{project}',[ProjectController::class,'update']);
+    Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
+});
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+
 
 require __DIR__.'/auth.php';
