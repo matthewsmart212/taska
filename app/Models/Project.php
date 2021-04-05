@@ -9,5 +9,15 @@ class Project extends Model
 {
     use HasFactory;
 
-    private $protected = ['title','description'];
+    protected $fillable = ['user_id','title','description'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function path()
+    {
+        return '/projects/'.$this->id;
+    }
 }
