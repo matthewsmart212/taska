@@ -25,20 +25,24 @@ class ProjectController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate(['title'=>'required','description'=>'required']);
-
-        $project = auth()->user()->projects()->create($attributes);
+        $project = auth()->user()->projects()->create(request()->validate(
+            ['title'=>'required','description'=>'required']
+        ));
 
         return redirect($project->path());
     }
 
-    public function edit()
+    public function edit(Project $project)
     {
-        return view('profiles.create');
+        return view('projects.edit',['project'=>$project]);
     }
 
     public function update()
     {
-        return view('profiles.create');
+        $project = auth()->user()->projects()->update(request()->validate(
+            ['title'=>'required','description'=>'required']
+        ));
+
+        return redirect($project->path());
     }
 }
