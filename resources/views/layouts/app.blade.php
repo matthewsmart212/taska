@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <script src="https://kit.fontawesome.com/f4e16f164b.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -26,8 +27,8 @@
                 </div>
 
                 <ul class="p-4 text-gray-200">
-                    <li class="mb-2"><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/projects">Projects</a></li>
+                    <li class="mb-4 mt-4 block"><a href="/dashboard"><i class="fas fa-home mr-2"></i> Dashboard</a></li>
+                    <li class="mb-4 mt-4 block"><a href="/projects"><i class="fas fa-th-list mr-2"></i> Projects</a></li>
                 </ul>
 
             </aside>
