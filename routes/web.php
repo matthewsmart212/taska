@@ -16,14 +16,11 @@ use App\Http\Controllers\ProjectController;
 
 Route::get('/projects',[ProjectController::class,'index']);
 Route::get('/projects/create',[ProjectController::class,'create']);
-Route::get('/projects/{project}',[ProjectController::class,'show']);
 Route::post('/projects',[ProjectController::class,'store']);
+Route::get('/projects/{project}',[ProjectController::class,'show']);
 Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
-Route::post('/projects/{project}',[ProjectController::class,'update']);
-
-
-
-
+Route::put('/projects/{project}',[ProjectController::class,'update']);
+Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
 
 
 

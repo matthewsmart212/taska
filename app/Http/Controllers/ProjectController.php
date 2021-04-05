@@ -37,11 +37,12 @@ class ProjectController extends Controller
         return view('projects.edit',['project'=>$project]);
     }
 
-    public function update()
+    public function update(Project $project)
     {
-        $project = auth()->user()->projects()->update(request()->validate(
+        auth()->user()->projects()->update(request()->validate(
             ['title'=>'required','description'=>'required']
         ));
+
 
         return redirect($project->path());
     }
