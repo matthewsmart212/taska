@@ -23,8 +23,7 @@ class GroupFactory extends Factory
     {
         return [
             'project_id'=> '',
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->sentence,
+            'title' => $this->faker->title,
         ];
     }
 }

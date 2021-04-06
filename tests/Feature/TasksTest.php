@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Group;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -21,7 +22,8 @@ class TasksTest extends TestCase
         $this->actingAs($user);
 
         $project = Project::factory()->create();
-        $tasks = Task::factory()->count(3)->create(['project_id'=>$project->id]);
+        $group = Group::factory()->create(['project_id'=>$project->id]);
+        $tasks = Task::factory()->count(3)->create(['group_id'=>$group->id]);
 
         $response = $this->get($project->path());
 
@@ -37,7 +39,8 @@ class TasksTest extends TestCase
         $this->actingAs($user);
 
         $project = Project::factory()->create();
-        $task = Task::factory()->create(['project_id'=>$project->id]);
+        $group = Group::factory()->create(['project_id'=>$project->id]);
+        $task = Task::factory()->create(['group_id'=>$group->id]);
 
         $this->get($task->path())->assertSuccessful()->assertSeeText($task->title);
     }
@@ -50,7 +53,8 @@ class TasksTest extends TestCase
         $this->actingAs($user);
 
         $project = Project::factory()->create();
-        $attributes = ['project_id'=>$project->id,'title'=>$this->faker->title,'description'=>$this->faker->sentence];
+        $group = Group::factory()->create(['project_id'=>$project->id]);
+        $attributes = ['group_id'=>$group->id,'title'=>$this->faker->title,'description'=>$this->faker->sentence];
 
         $response = $this->post($project->path() . '/tasks',$attributes);
 
@@ -66,9 +70,10 @@ class TasksTest extends TestCase
         $this->actingAs($user);
 
         $project = Project::factory()->create();
-        $task = Task::factory()->create(['project_id'=>$project->id]);
+        $group = Group::factory()->create(['project_id'=>$project->id]);
+        $task = Task::factory()->create(['group_id'=>$group->id]);
 
-        $attributes = ['project_id'=>$project->id,'title'=>$this->faker->title,'description'=>$this->faker->sentence];
+        $attributes = ['group_id'=>$group->id,'title'=>$this->faker->title,'description'=>$this->faker->sentence];
 
         $this->put($project->path() . '/tasks/'.$task->id,$attributes);
         $this->assertDatabaseHas('tasks', $attributes);
