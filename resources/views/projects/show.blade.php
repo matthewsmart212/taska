@@ -11,9 +11,76 @@
     </div>
 
 
-    <div class="bg-white shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
-            <h1>{{ $project->title }}</h1>
+    <div class="flex">
+        <div class="w-1/5 pr-4">
+            <div class="bg-gray-200 rounded-lg p-4">
+                <h2>Todo:</h2>
+
+                <?php
+
+                for($i=0;$i<5;$i++) {
+                    ?>
+                    <a href="/projects/tasks/1" class="block">
+                        <div class="bg-white rounded-lg mt-4 p-4">
+                            Task name goes here
+                        </div>
+                    </a>
+
+                    <?php
+                }
+                ?>
+
+                <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+            </div>
+        </div>
+        <div class="w-1/5 pr-4">
+            <div class="bg-gray-200 rounded-lg p-4">
+                <h2>Working On:</h2>
+
+                <?php
+
+                for($i=0;$i<2;$i++) {
+                ?>
+                <a href="/projects/tasks/1" class="block">
+                    <div class="bg-white rounded-lg mt-4 p-4">
+                        Task name goes here
+                    </div>
+                </a>
+
+                <?php
+                }
+                ?>
+
+                <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+            </div>
+        </div>
+        <div class="w-1/5 pr-4">
+            <div class="bg-gray-200 rounded-lg p-4">
+                <h2>Complete:</h2>
+
+                <?php
+
+                for($i=0;$i<7;$i++) {
+                ?>
+                <a href="/projects/tasks/1" class="block">
+                    <div class="bg-white rounded-lg mt-4 p-4">
+                        Task name goes here
+                    </div>
+                </a>
+
+                <?php
+                }
+                ?>
+
+                <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+            </div>
+        </div>
+        <div class="w-2/5">
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <h1 class="text-lg">Project Information</h1>
+                <p class="mt-4">{{ $project->description }}</p>
+            </div>
         </div>
     </div>
+
 </x-app-layout>

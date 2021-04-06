@@ -20,4 +20,9 @@ class Project extends Model
     {
         return '/projects/'.$this->id;
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
