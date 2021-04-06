@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\Group;
 
 class TaskController extends Controller
 {
@@ -20,10 +21,10 @@ class TaskController extends Controller
     public function store(Project $project)
     {
         $attributes = request()->validate([
-            'title'=>'required','description'=>'required'
+            'group_id'=>'required','title'=>'required'
         ]);
 
-        $attributes['group_id'] = $project->groups()->first()->id;
+        $attributes['order'] = Group::find(request('group_id'))->tasks->count() + 1;
 
         $task = $project->tasks()->create($attributes);
 
@@ -37,9 +38,11 @@ class TaskController extends Controller
 
     public function update(Project $project,Task $task)
     {
-        $task->update(request()->validate([
-            'title'=>'required','description'=>'required'
-        ]));
+        request()->validate([
+            'title'=>'required'
+        ]);
+
+        $task->update(request()->all());
 
         return redirect($task->path());
     }

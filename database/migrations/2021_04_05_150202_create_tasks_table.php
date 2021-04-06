@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->integer('group_id');
             $table->integer('order');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

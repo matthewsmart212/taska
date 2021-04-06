@@ -32,6 +32,14 @@
                 @empty
                     <div class="column" style="min-height:50px;"></div>
                 @endforelse
+
+                <p class="mt-4 text-gray-500 block text-xs create-new-task">Create new task</p>
+                <form class="hidden" method="POST" action="{{ $project->path() }}/tasks">
+                    @csrf
+                    <input type="text" name="group_id" hidden value="{{ $group->id }}">
+                    <input type="text" name="title" placeholder="Task name" class="w-3/4 rounded-lg mt-2 border-gray-400 inline-block">
+                    <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2">Go</button>
+                </form>
             </li>
         @endforeach
 

@@ -95,12 +95,11 @@
                                     _token: '{{ csrf_token() }}'
                                 }
                             });
-
                         }
                     });
                 }
 
-                $('.create-new-group').click(function(){
+                $('.create-new-group,.create-new-task').click(function(){
                     $(this).next().show();
                 });
             </script>
