@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/projects/{project}/tasks/{task}',[TaskController::class,'update']);
 
 
-    Route::post('/projects/{project}/groups',[GroupController::class,'store']);
+    Route::post('/projects/{project}/groups',[GroupController::class,'store'])->middleware('five.groups.only');
 });
 
 

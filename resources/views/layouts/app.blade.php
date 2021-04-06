@@ -51,6 +51,12 @@
 
                 @include('layouts.navigation')
 
+                @if (session('errors'))
+                    <div class="bg-red-400 fixed bottom-5 right-0 text-white p-4">
+                        {{ session('errors') }}
+                    </div>
+                @endif
+
                 <main class="bg-gray-100 pt-12 px-7" style="min-height: calc(100vh - 58px);">
                     {{ $slot }}
                 </main>

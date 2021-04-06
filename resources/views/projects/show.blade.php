@@ -40,6 +40,7 @@
                 <p class="create-new-group">Create new group</p>
                 <form class="hidden" method="POST" action="{{ $project->path() }}/groups">
                     @csrf
+                    <input type="text" name="project_id" hidden value="{{ $project->id }}">
                     <input type="text" name="title" placeholder="Group name" class="w-3/4 rounded-lg mt-2 border-gray-400 inline-block">
                     <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2">Go</button>
                 </form>
