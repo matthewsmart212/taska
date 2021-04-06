@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
     Route::put('/projects/{project}',[ProjectController::class,'update']);
     Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
+
+
+    Route::get('/projects/{project}/tasks/create',[TaskController::class,'create']);
+    Route::post('/projects/{project}/tasks',[TaskController::class,'store']);
+    Route::get('/projects/{project}/tasks/{task}',[TaskController::class,'show']);
+    Route::get('/projects/{project}/tasks/{task}/edit',[TaskController::class,'edit']);
+    Route::put('/projects/{project}/tasks/{task}',[TaskController::class,'update']);
 });
 
 

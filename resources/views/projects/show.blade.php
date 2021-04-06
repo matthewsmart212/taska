@@ -16,7 +16,7 @@
             <div class="bg-gray-200 rounded-lg p-4">
                 <h2>Todo:</h2>
 
-                <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+                <a href="{{ $project->path() }}/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
             </div>
         </div>
         <div class="w-1/5 pr-4">
@@ -30,14 +30,14 @@
                         </div>
                     </a>
                 @endforeach
-                <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+                <a href="{{ $project->path() }}/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
             </div>
         </div>
         <div class="w-1/5 pr-4">
             <div class="bg-gray-200 rounded-lg p-4">
                 <h2>Complete:</h2>
 
-                <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+                <a href="{{ $project->path() }}/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
             </div>
         </div>
         <div class="w-2/5">
