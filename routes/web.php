@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/projects/{project}',[ProjectController::class,'show']);
     Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
     Route::put('/projects/{project}',[ProjectController::class,'update']);
-    Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
+    //Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
 
 
     Route::get('/projects/{project}/tasks/create',[TaskController::class,'create']);

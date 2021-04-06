@@ -54,9 +54,11 @@ class ProjectsTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
+        $project = Project::factory()->create();
+
         $attributes = ['user_id'=>$user->id,'title'=>$this->faker->title,'description'=>$this->faker->sentence];
 
-        $this->post('/projects',$attributes);
+        $this->put($project->path(),$attributes);
         $this->assertDatabaseHas('projects', $attributes);
     }
 }
