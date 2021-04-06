@@ -39,9 +39,6 @@
                             <textarea name="description" class="w-full rounded-lg mt-2 border-gray-300"></textarea>
                         </label>
                     </div>
-
-
-
                 </div>
             </form>
         </div>
