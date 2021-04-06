@@ -12,34 +12,25 @@
 
 
     <div class="flex">
-        <div class="w-1/5 pr-4">
-            <div class="bg-gray-200 rounded-lg p-4">
-                <h2>Todo:</h2>
+        @foreach($project->groups as $group)
+            <div class="w-1/5 pr-4">
+                <div class="bg-gray-200 rounded-lg p-4">
+                    <h2>{{ $group->title }}:</h2>
 
-                <a href="{{ $project->path() }}/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
+                    @foreach($group->tasks as $task)
+                        <a href="{{ $task->path() }}" class="block">
+                            <div class="bg-white rounded-lg mt-4 p-4">
+                                {{ $task->title }}
+                            </div>
+                        </a>
+                    @endforeach
+                    <a href='/projects/{{ $group->project_id }}/tasks/create' class="mt-3 block text-gray-500">Create new task</a>
+                </div>
             </div>
-        </div>
-        <div class="w-1/5 pr-4">
-            <div class="bg-gray-200 rounded-lg p-4">
-                <h2>Working On:</h2>
+        @endforeach
 
-                @foreach($project->tasks as $task)
-                    <a href="{{ $task->path() }}" class="block">
-                        <div class="bg-white rounded-lg mt-4 p-4">
-                            {{ $task->title }}
-                        </div>
-                    </a>
-                @endforeach
-                <a href="{{ $project->path() }}/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
-            </div>
-        </div>
-        <div class="w-1/5 pr-4">
-            <div class="bg-gray-200 rounded-lg p-4">
-                <h2>Complete:</h2>
 
-                <a href="{{ $project->path() }}/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
-            </div>
-        </div>
+
         <div class="w-2/5">
             <div class="bg-white rounded-lg p-4 shadow-sm">
                 <h1 class="text-lg">Project Information</h1>

@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function show(Project $project,Task $task)
     {
-        return view('projects.tasks.show',['task'=>$task]);
+        return view('projects.tasks.show',['task'=>$task,'project'=>$project]);
     }
 
     public function create(Project $project)
@@ -28,7 +28,7 @@ class TaskController extends Controller
 
     public function edit(Project $project,Task $task)
     {
-        return view('projects.tasks.edit',['task'=>$task]);
+        return view('projects.tasks.edit',['task'=>$task,'project'=>$project]);
     }
 
     public function update(Project $project,Task $task)
