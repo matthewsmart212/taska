@@ -16,6 +16,42 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+        <style>
+
+            .tilt {
+                transform: rotate(3deg);
+                -moz-transform: rotate(3deg);
+                -webkit-transform: rotate(3deg);
+            }
+
+        </style>
+
+        <script>
+            $(onPageLoad);
+
+            function onPageLoad()
+            {
+                $( ".column" ).sortable({
+                    connectWith: ".column",
+                    handle: ".portlet-header",
+                    start: function (event, ui) {
+                        ui.item.addClass('tilt');
+                        console.log('moving');
+                    },
+                    stop: function (event, ui) {
+                        ui.item.removeClass('tilt');
+                        console.log('moved');
+                    }
+                });
+            }
+        </script>
+
     </head>
     <body class="font-sans antialiased">
 

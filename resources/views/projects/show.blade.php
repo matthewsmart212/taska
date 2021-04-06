@@ -19,30 +19,29 @@
     </div>
 
 
-
-    <div class="flex">
+    <ul>
         @foreach($project->groups as $group)
-            <div class="w-1/5 pr-4">
-                <div class="bg-gray-200 rounded-lg p-4">
-                    <h2>{{ $group->title }}:</h2>
-
-                    @foreach($group->tasks as $task)
-                        <a href="{{ $task->path() }}" class="block">
-                            <div class="bg-white rounded-lg mt-4 p-4">
-                                {{ $task->title }}
-                            </div>
-                        </a>
-                    @endforeach
-                    <a href='/projects/{{ $group->project_id }}/tasks/create' class="mt-3 block text-gray-500">Create new task</a>
-                </div>
-            </div>
+            <li class="bg-gray-200 rounded-lg p-4 mr-4 inline-block float-left" style="height:fit-content;width:250px;">
+                <h2>{{ $group->title }}:</h2>
+                @forelse($group->tasks as $task)
+                    <div class="column" @if ($loop->first) style="min-height:50px;" @endif>
+                        <div>
+                            <a href="{{ $task->path() }}" class="portlet-header bg-white rounded-lg mt-4 p-4 block">{{ $task->title }}</a>
+                        </div>
+                    </div>
+                @empty
+                    <div class="column" style="min-height:50px;"></div>
+                @endforelse
+            </li>
         @endforeach
 
-        <div class="w-1/5 pr-4">
-            <div class="bg-gray-300 rounded-lg p-4">
-                <a href="">Create new group</a>
-            </div>
-        </div>
-    </div>
+        <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left" style="height:fit-content; width:250px;">
+            <a href="">Create new group</a>
+        </li>
+        <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left" style="height:fit-content; width:250px;">
+            <a href="">Create new group</a>
+        </li>
+    </ul>
+
 
 </x-app-layout>
