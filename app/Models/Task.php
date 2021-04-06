@@ -10,15 +10,16 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','description'];
+    protected $fillable = ['group_id','title','description'];
 
-    public function project()
+    public function group()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Group::class);
     }
 
     public function path()
     {
         return '/projects/'. $this->project->id .'/tasks/'. $this->id;
     }
+
 }

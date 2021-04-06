@@ -21,8 +21,13 @@ class Project extends Model
         return '/projects/'.$this->id;
     }
 
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasManyThrough(Task::class,Group::class);
     }
 }

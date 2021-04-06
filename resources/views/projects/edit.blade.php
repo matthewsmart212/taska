@@ -7,19 +7,40 @@
             <h1 class="text-lg font-black mt-1">Edit: {{ $project->title }}</h1>
             <div>
                 <a href="/projects/{{ $project->id }}" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Cancel</a>
-                <button class="py-2 px-4 bg-gray-500 text-white rounded-lg">Save Changes</button>
             </div>
         </div>
 
-        <div class="bg-white shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <h1>Edit: {{ $project->title }}</h1>
-                    <label>Name:</label>
-                    <input type="text" name="title" value="{{ $project->title }}"/>
+        <div class="flex">
+            <div class="w-2/5">
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="flex justify-between mt-2">
+                        <div>
+                            <h1 class="text-lg">Edit: {{ $project->title }}</h1>
+                        </div>
+                        <div>
+                            <button class="py-2 px-4 bg-gray-500 text-white rounded-lg">Save</button>
+                        </div>
+                    </div>
 
-                    <label>Description:</label>
-                    <textarea name="description">{{ $project->description }}</textarea>
+                    <hr class="mt-5 mb-4"/>
+
+                    <div class="mb-3">
+                        <label class="">Title:
+                            <input type="text" name="title" class="w-full rounded-lg mt-2 border-gray-300" value="{{ $project->title }}"/>
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="">Description:
+                            <textarea name="description" class="w-full rounded-lg mt-2 border-gray-300">{{ $project->description }}</textarea>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
+
     </form>
 </x-app-layout>
