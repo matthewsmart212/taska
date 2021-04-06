@@ -19,9 +19,13 @@ class TaskController extends Controller
 
     public function store(Project $project)
     {
-        $task = $project->tasks()->create(request()->validate([
+        $attributes = request()->validate([
             'title'=>'required','description'=>'required'
-        ]));
+        ]);
+
+        $attributes['group_id'] = $project->groups()->first()->id;
+
+        $task = $project->tasks()->create($attributes);
 
         return redirect($task->path());
     }
