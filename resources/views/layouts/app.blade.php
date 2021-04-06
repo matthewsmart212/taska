@@ -73,11 +73,26 @@
                         handle: ".portlet-header",
                         start: function (event, ui) {
                             ui.item.addClass('tilt');
-                            console.log('moving');
                         },
                         stop: function (event, ui) {
                             ui.item.removeClass('tilt');
-                            console.log('moved');
+
+                            let task_id = ui.item.children().attr('data-task-id');
+                            let group_id = ui.item.parent().parent().attr('data-group-id');
+
+                            $.ajax({
+                                url: "/move-task-to-a-new-group",
+                                type:"POST",
+                                data:{
+                                    task_id:task_id,
+                                    group_id:group_id,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success:function(response){
+                                    console.log(response);
+                                },
+                            });
+
                         }
                     });
                 }

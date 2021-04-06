@@ -21,12 +21,12 @@
 
     <ul class="flex">
         @foreach($project->groups as $group)
-            <li class="bg-gray-200 rounded-lg p-4 mr-4 inline-block float-left w-1/5" style="height:fit-content;">
+            <li class="bg-gray-200 rounded-lg p-4 mr-4 inline-block float-left w-1/5" style="height:fit-content;" data-group-id="{{ $group->id }}">
                 <h2>{{ $group->title }}:</h2>
                 @forelse($group->tasks as $task)
                     <div class="column" @if ($loop->first) style="min-height:50px;" @endif>
                         <div>
-                            <a href="{{ $task->path() }}" class="portlet-header bg-white rounded-lg mt-4 p-4 block">{{ $task->title }}</a>
+                            <a href="{{ $task->path() }}" class="portlet-header bg-white rounded-lg mt-4 p-4 block task" data-task-id="{{ $task->id }}">{{ $task->title }}</a>
                         </div>
                     </div>
                 @empty
