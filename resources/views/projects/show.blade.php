@@ -16,20 +16,6 @@
             <div class="bg-gray-200 rounded-lg p-4">
                 <h2>Todo:</h2>
 
-                <?php
-
-                for($i=0;$i<5;$i++) {
-                    ?>
-                    <a href="/projects/tasks/1" class="block">
-                        <div class="bg-white rounded-lg mt-4 p-4">
-                            Task name goes here
-                        </div>
-                    </a>
-
-                    <?php
-                }
-                ?>
-
                 <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
             </div>
         </div>
@@ -37,40 +23,19 @@
             <div class="bg-gray-200 rounded-lg p-4">
                 <h2>Working On:</h2>
 
-                <?php
-
-                for($i=0;$i<2;$i++) {
-                ?>
-                <a href="/projects/tasks/1" class="block">
-                    <div class="bg-white rounded-lg mt-4 p-4">
-                        Task name goes here
-                    </div>
-                </a>
-
-                <?php
-                }
-                ?>
-
+                @foreach($project->tasks as $task)
+                    <a href="{{ $task->path() }}" class="block">
+                        <div class="bg-white rounded-lg mt-4 p-4">
+                            {{ $task->title }}
+                        </div>
+                    </a>
+                @endforeach
                 <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
             </div>
         </div>
         <div class="w-1/5 pr-4">
             <div class="bg-gray-200 rounded-lg p-4">
                 <h2>Complete:</h2>
-
-                <?php
-
-                for($i=0;$i<7;$i++) {
-                ?>
-                <a href="/projects/tasks/1" class="block">
-                    <div class="bg-white rounded-lg mt-4 p-4">
-                        Task name goes here
-                    </div>
-                </a>
-
-                <?php
-                }
-                ?>
 
                 <a href="/projects/tasks/create" class="mt-3 block text-gray-500">Create new task</a>
             </div>
