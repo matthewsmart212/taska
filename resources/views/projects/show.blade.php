@@ -11,6 +11,15 @@
     </div>
 
 
+    <div class="w-full mb-6">
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+            <h1 class="text-lg">Project Information</h1>
+            <p class="mt-4">{{ $project->description }}</p>
+        </div>
+    </div>
+
+
+
     <div class="flex">
         @foreach($project->groups as $group)
             <div class="w-1/5 pr-4">
@@ -29,12 +38,9 @@
             </div>
         @endforeach
 
-
-
-        <div class="w-2/5">
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-                <h1 class="text-lg">Project Information</h1>
-                <p class="mt-4">{{ $project->description }}</p>
+        <div class="w-1/5 pr-4">
+            <div class="bg-gray-300 rounded-lg p-4">
+                <a href="">Create new group</a>
             </div>
         </div>
     </div>
