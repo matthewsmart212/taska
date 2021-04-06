@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::post('/projects/{project}/groups',[GroupController::class,'store'])->middleware('five.groups.only');
+
+
+
+    Route::post('/tasks/{task}/comment',[CommentController::class,'store']);
 
 });
 

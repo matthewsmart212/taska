@@ -17,6 +17,11 @@ class Task extends Model
         return $this->belongsTo(Group::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function path()
     {
         return '/projects/'. $this->group->project_id .'/tasks/'. $this->id;

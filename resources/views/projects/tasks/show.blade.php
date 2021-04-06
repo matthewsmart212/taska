@@ -14,12 +14,17 @@
     </div>
 
 
+
     <div class="flex">
         <div class="w-3/5 pr-4">
-            <div class="bg-gray-200 rounded-lg p-4">
-                <h2>Comments section here:</h2>
-
-            </div>
+                <div class="rounded-lg w-full bg-white px-8 py-6 mb-4 shadow-sm">
+                    @include('components.write-comment')
+                </div>
+                <div class="rounded-lg bg-white shadow-sm">
+                    @foreach($task->comments as $comment)
+                            @include('components.comment')
+                    @endforeach
+                </div>
         </div>
 
         <div class="w-2/5">
