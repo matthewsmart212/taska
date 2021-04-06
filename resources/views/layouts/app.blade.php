@@ -31,27 +31,6 @@
             }
 
         </style>
-
-        <script>
-            $(onPageLoad);
-
-            function onPageLoad()
-            {
-                $( ".column" ).sortable({
-                    connectWith: ".column",
-                    handle: ".portlet-header",
-                    start: function (event, ui) {
-                        ui.item.addClass('tilt');
-                        console.log('moving');
-                    },
-                    stop: function (event, ui) {
-                        ui.item.removeClass('tilt');
-                        console.log('moved');
-                    }
-                });
-            }
-        </script>
-
     </head>
     <body class="font-sans antialiased">
 
@@ -77,5 +56,29 @@
                 </main>
 
             </section>
+
+            <script>
+                $(onPageLoad);
+
+                function onPageLoad()
+                {
+                    $( ".column" ).sortable({
+                        connectWith: ".column",
+                        handle: ".portlet-header",
+                        start: function (event, ui) {
+                            ui.item.addClass('tilt');
+                            console.log('moving');
+                        },
+                        stop: function (event, ui) {
+                            ui.item.removeClass('tilt');
+                            console.log('moved');
+                        }
+                    });
+                }
+
+                $('.create-new-group').click(function(){
+                    $(this).next().show();
+                });
+            </script>
     </body>
 </html>

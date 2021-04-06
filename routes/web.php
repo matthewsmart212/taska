@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/projects/{project}/tasks/{task}',[TaskController::class,'show']);
     Route::get('/projects/{project}/tasks/{task}/edit',[TaskController::class,'edit']);
     Route::put('/projects/{project}/tasks/{task}',[TaskController::class,'update']);
+
+
+    Route::post('/projects/{project}/groups',[GroupController::class,'store']);
 });
 
 

@@ -19,9 +19,9 @@
     </div>
 
 
-    <ul>
+    <ul class="flex">
         @foreach($project->groups as $group)
-            <li class="bg-gray-200 rounded-lg p-4 mr-4 inline-block float-left" style="height:fit-content;width:250px;">
+            <li class="bg-gray-200 rounded-lg p-4 mr-4 inline-block float-left w-1/5" style="height:fit-content;">
                 <h2>{{ $group->title }}:</h2>
                 @forelse($group->tasks as $task)
                     <div class="column" @if ($loop->first) style="min-height:50px;" @endif>
@@ -35,12 +35,16 @@
             </li>
         @endforeach
 
-        <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left" style="height:fit-content; width:250px;">
-            <a href="">Create new group</a>
-        </li>
-        <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left" style="height:fit-content; width:250px;">
-            <a href="">Create new group</a>
-        </li>
+        @if($project->groups->count() < 5)
+            <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left w-1/5" style="height:fit-content;">
+                <p class="create-new-group">Create new group</p>
+                <form class="hidden" method="POST" action="{{ $project->path() }}/groups">
+                    @csrf
+                    <input type="text" name="title" placeholder="Group name" class="w-3/4 rounded-lg mt-2 border-gray-400 inline-block">
+                    <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2">Go</button>
+                </form>
+            </li>
+        @endif
     </ul>
 
 
