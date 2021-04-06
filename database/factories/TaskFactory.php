@@ -23,6 +23,7 @@ class TaskFactory extends Factory
     {
         return [
             'group_id'=> '',
+            'order'=> '',
             'title' => $this->faker->sentence,
             'description' => $this->faker->sentence,
         ];

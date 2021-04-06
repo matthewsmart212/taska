@@ -16,30 +16,35 @@ class TaskSeeder extends Seeder
     {
         DB::table('tasks')->insert([
             'group_id' => 1,
+            'order' => 1,
             'title' => 'Task one',
             'description' => 'This is the description for one'
         ]);
 
         DB::table('tasks')->insert([
             'group_id' => 1,
+            'order' => 2,
             'title' => 'Task two',
             'description' => 'This is the description for one'
         ]);
 
         DB::table('tasks')->insert([
             'group_id' => 1,
+            'order' => 3,
             'title' => 'Task three',
             'description' => 'This is the description for one'
         ]);
 
         DB::table('tasks')->insert([
             'group_id' => 2,
+            'order' => 1,
             'title' => 'Task four',
             'description' => 'This is the description for one'
         ]);
 
         DB::table('tasks')->insert([
             'group_id' => 2,
+            'order' => 2,
             'title' => 'Task five',
             'description' => 'This is the description for one'
         ]);

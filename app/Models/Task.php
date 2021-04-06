@@ -22,4 +22,16 @@ class Task extends Model
         return '/projects/'. $this->group->project_id .'/tasks/'. $this->id;
     }
 
+    public static function changeGroupAndOrder($task_ids)
+    {
+        $count = 1;
+        foreach($task_ids as $id){
+            $task = Task::find($id);
+            $task->group_id = request('group_id');
+            $task->order = $count;
+            $task->save();
+            $count++;
+        }
+    }
+
 }

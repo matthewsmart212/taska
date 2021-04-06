@@ -77,20 +77,23 @@
                         stop: function (event, ui) {
                             ui.item.removeClass('tilt');
 
-                            let task_id = ui.item.children().attr('data-task-id');
-                            let group_id = ui.item.parent().parent().attr('data-group-id');
+                            let task_ids = [];
+                            let group = ui.item.parent().parent();
+
+                            group.find('a').each(function() {
+                                task_ids.push($(this).attr('data-task-id'));
+                            });
+                            //let task_id = task.attr('data-task-id');
+                            let group_id = group.attr('data-group-id');
 
                             $.ajax({
                                 url: "/move-task-to-a-new-group",
                                 type:"POST",
                                 data:{
-                                    task_id:task_id,
+                                    task_ids:task_ids,
                                     group_id:group_id,
                                     _token: '{{ csrf_token() }}'
-                                },
-                                success:function(response){
-                                    console.log(response);
-                                },
+                                }
                             });
 
                         }

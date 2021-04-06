@@ -44,13 +44,11 @@ class TaskController extends Controller
         return redirect($task->path());
     }
 
-    public function moveGroup()
+    public function moveTask()
     {
-        request()->validate(['group_id'=>'required','task_id'=>'required']);
+        $task_ids = request('task_ids');
 
-        $task = Task::find(request('task_id'));
-        $task->group_id = request('group_id');
-        $task->save();
+        Task::changeGroupAndOrder($task_ids);
 
         return 'success';
     }
