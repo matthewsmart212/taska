@@ -45,7 +45,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
-    Route::post('/tasks/{task}/comment',[CommentController::class,'store']);
+    Route::post('/tasks/{task}/comments',[CommentController::class,'store']);
+    Route::put('/tasks/{task}/comments/{comment}',[CommentController::class,'update']);
 
 });
 

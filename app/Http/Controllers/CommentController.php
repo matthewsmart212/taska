@@ -19,4 +19,11 @@ class CommentController extends Controller
 
         return redirect($task->path());
     }
+
+    public function update(Task $task,Comment $comment)
+    {
+        $comment->update(request()->validate(['comment'=>'required']));
+
+        return redirect($task->path());
+    }
 }

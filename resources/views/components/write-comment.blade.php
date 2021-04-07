@@ -1,4 +1,4 @@
-<form method="POST" action="/tasks/{{ $task->id }}/comment">
+<form method="POST" action="/tasks/{{ $task->id }}/comments">
     @csrf
 
     <textarea

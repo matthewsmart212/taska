@@ -102,6 +102,10 @@
                 $('.create-new-group,.create-new-task').click(function(){
                     $(this).next().show();
                 });
+
+                $('.update-comment').click(function(){
+                    $(this).parent().prev().show().prev().hide();
+                });
             </script>
     </body>
 </html>
