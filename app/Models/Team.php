@@ -21,4 +21,8 @@ class Team extends Model
         return '/teams/'.$this->id;
     }
 
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }

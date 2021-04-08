@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {return view('welcome');});
 
+
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');

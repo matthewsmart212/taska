@@ -18,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'role_id',
         'email',
         'password',
     ];
@@ -54,5 +55,15 @@ class User extends Authenticatable
     public function teams()
     {
         return $this->belongsToMany(Team::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role_id == 1;
     }
 }

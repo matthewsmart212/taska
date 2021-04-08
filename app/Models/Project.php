@@ -26,6 +26,11 @@ class Project extends Model
         return $this->hasMany(Group::class);
     }
 
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
     public function tasks()
     {
         return $this->hasManyThrough(Task::class,Group::class);
