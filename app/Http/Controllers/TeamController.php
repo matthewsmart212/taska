@@ -14,11 +14,38 @@ class TeamController extends Controller
         ]);
     }
 
+    public function show(Team $team)
+    {
+        return view('teams.show',['team'=>$team]);
+    }
 
+    public function create()
+    {
+        return view('teams.create');
+    }
 
-    public function create(){}
-    public function store(){}
-    public function show(){}
-    public function edit(){}
-    public function update(){}
+    public function store()
+    {
+
+        $team = auth()->user()->teams()->create(request()->validate(
+            ['title'=>'required']
+        ));
+
+        return redirect($team->path());
+    }
+
+    public function edit(Team $team)
+    {
+        return view('teams.edit',['team'=>$team]);
+    }
+
+    public function update(Team $team)
+    {
+
+        $team->update(request()->validate(
+            ['title'=>'required']
+        ));
+
+        return redirect($team->path());
+    }
 }

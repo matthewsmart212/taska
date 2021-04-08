@@ -40,16 +40,19 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/projects/{project}/tasks/{task}/edit',[TaskController::class,'edit']);
     Route::put('/projects/{project}/tasks/{task}',[TaskController::class,'update']);
     Route::post('/move-task-to-a-new-group',[TaskController::class,'moveTask']);
-
-
     Route::post('/projects/{project}/groups',[GroupController::class,'store'])->middleware('five.groups.only');
-
 
 
     Route::post('/tasks/{task}/comments',[CommentController::class,'store']);
     Route::put('/tasks/{task}/comments/{comment}',[CommentController::class,'update']);
 
+
     Route::get('/teams',[TeamController::class,'index']);
+    Route::get('/teams/create',[TeamController::class,'create']);
+    Route::post('/teams',[TeamController::class,'store']);
+    Route::get('/teams/{team}',[TeamController::class,'show']);
+    Route::get('/teams/{team}/edit',[TeamController::class,'edit']);
+    Route::put('/teams/{team}',[TeamController::class,'update']);
 
 });
 

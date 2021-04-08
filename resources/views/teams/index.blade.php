@@ -2,7 +2,7 @@
 
     <div class="flex justify-between mb-5 border-b border-gray-200 pb-6">
         <h1 class="text-lg font-black mt-1">All Teams</h1>
-        <a href="/projects/create" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Create Team</a>
+        <a href="/teams/create" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Create Team</a>
     </div>
 
 
