@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/teams/{team}/add-user-to-team',[TeamController::class,'addUser']);
     Route::post('/teams/{team}/remove-user-from-team',[TeamController::class,'removeUser']);
 
+    Route::get('/users',[UserController::class,'index']);
 });
 
 
