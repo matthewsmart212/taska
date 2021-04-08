@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             TeamSeeder::class,
             TeamUserSeeder::class,
+            ProjectTeamSeeder::class,
         ]);
     }
 }
