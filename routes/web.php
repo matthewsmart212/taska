@@ -5,6 +5,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/tasks/{task}/comments',[CommentController::class,'store']);
     Route::put('/tasks/{task}/comments/{comment}',[CommentController::class,'update']);
+
+    Route::get('/teams',[TeamController::class,'index']);
 
 });
 

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             TaskSeeder::class,
             CommentSeeder::class,
+            TeamSeeder::class,
+            TeamUserSeeder::class,
         ]);
     }
 }
