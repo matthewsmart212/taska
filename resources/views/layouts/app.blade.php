@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Taska</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -16,102 +16,28 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-
-
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
-        <style>
-
-            .tilt {
-                transform: rotate(3deg);
-                -moz-transform: rotate(3deg);
-                -webkit-transform: rotate(3deg);
-            }
-
-        </style>
+        <!-- style to tilt task cards when moved between groups -->
+        <style>.tilt {transform: rotate(3deg);-moz-transform: rotate(3deg);-webkit-transform: rotate(3deg);}</style>
     </head>
     <body class="font-sans antialiased">
 
-
             <aside class="inline-block bg-gray-500 h-screen fixed" style="width:200px;">
-
-                <div class="bg-gray-700 p-4">
-                    <h1 class="text-white">Taska</h1>
-                </div>
-
-                <ul class="p-4 text-gray-200">
-                    <li class="mb-4 mt-4 block"><a href="/dashboard"><i class="fas fa-home mr-2"></i> Dashboard</a></li>
-                    <li class="mb-4 mt-4 block"><a href="/projects"><i class="fas fa-tasks mr-2"></i> Projects</a></li>
-                    <li class="mb-4 mt-4 block"><a href="/teams"><i class="fas fa-user-friends mr-2"></i> Teams</a></li>
-                    @if(auth()->user()->isAdmin())
-                        <li class="mb-4 mt-4 block"><a href="/users"><i class="fas fa-user mr-2"></i> Users</a></li>
-                    @endif
-                </ul>
-
+                @include('components.sidebar')
             </aside>
+
             <section class="inline-block" style="width:calc(100% - 200px); margin-left:200px;">
-
                 @include('layouts.navigation')
-
-                @if($errors->count())
-                    <div class="bg-red-400 fixed bottom-5 right-0 text-white p-4">
-                        @foreach ($errors->all() as $error)
-                            <div>{{ $error }}</div>
-                        @endforeach
-                    </div>
-                @endif
+                @include('components.errors')
 
                 <main class="bg-gray-100 pt-12 px-7" style="min-height: calc(100vh - 58px);">
                     {{ $slot }}
                 </main>
-
             </section>
 
-            <script>
-                $(onPageLoad);
-
-                function onPageLoad()
-                {
-                    $( ".column" ).sortable({
-                        connectWith: ".column",
-                        handle: ".portlet-header",
-                        start: function (event, ui) {
-                            ui.item.addClass('tilt');
-                        },
-                        stop: function (event, ui) {
-                            ui.item.removeClass('tilt');
-
-                            let task_ids = [];
-                            let group = ui.item.parent().parent();
-
-                            group.find('a').each(function() {
-                                task_ids.push($(this).attr('data-task-id'));
-                            });
-                            //let task_id = task.attr('data-task-id');
-                            let group_id = group.attr('data-group-id');
-
-                            $.ajax({
-                                url: "/move-task-to-a-new-group",
-                                type:"POST",
-                                data:{
-                                    task_ids:task_ids,
-                                    group_id:group_id,
-                                    _token: '{{ csrf_token() }}'
-                                }
-                            });
-                        }
-                    });
-                }
-
-                $('.create-new-group,.create-new-task').click(function(){
-                    $(this).next().show();
-                });
-
-                $('.update-comment').click(function(){
-                    $(this).parent().prev().show().prev().hide();
-                });
-            </script>
+            <script src="/js/card.js" ></script>
     </body>
 </html>
