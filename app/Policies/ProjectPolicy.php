@@ -32,7 +32,7 @@ class ProjectPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        // todo: change view so users only see projects they are allowed to see
     }
 
     /**
@@ -44,10 +44,6 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        if($user->isAdmin()){
-
-        }
-
         $array1 = $user->teams->pluck('title')->toArray();
         $array2 = $project->teams->pluck('title')->toArray();
 
@@ -77,7 +73,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -89,7 +85,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -101,7 +97,7 @@ class ProjectPolicy
      */
     public function restore(User $user, Project $project)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -113,6 +109,6 @@ class ProjectPolicy
      */
     public function forceDelete(User $user, Project $project)
     {
-        //
+        return $user->isAdmin();
     }
 }

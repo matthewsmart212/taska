@@ -37,10 +37,10 @@ Route::group(['middleware' => 'auth'], function() {
     */
     Route::get('/projects',[ProjectController::class,'index']);
     Route::get('/projects/create',[ProjectController::class,'create'])->middleware('can:create,App\Models\Project');
-    Route::post('/projects',[ProjectController::class,'store']);
+    Route::post('/projects',[ProjectController::class,'store'])->middleware('can:create,App\Models\Project');
     Route::get('/projects/{project}',[ProjectController::class,'show'])->middleware('can:view,project');
-    Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
-    Route::put('/projects/{project}',[ProjectController::class,'update']);
+    Route::get('/projects/{project}/edit',[ProjectController::class,'edit'])->middleware('can:update,App\Models\Project');
+    Route::put('/projects/{project}',[ProjectController::class,'update'])->middleware('can:update,App\Models\Project');
 
     /*
     |--------------------------------------------------------------------------
