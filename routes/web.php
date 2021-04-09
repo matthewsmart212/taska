@@ -23,19 +23,30 @@ Route::get('/', function () {return view('welcome');});
 
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    /*
+    |--------------------------------------------------------------------------
+    | Routes for Dashboard
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
+    /*
+    |--------------------------------------------------------------------------
+    | Routes for projects
+    |--------------------------------------------------------------------------
+    */
     Route::get('/projects',[ProjectController::class,'index']);
     Route::get('/projects/create',[ProjectController::class,'create']);
     Route::post('/projects',[ProjectController::class,'store']);
     Route::get('/projects/{project}',[ProjectController::class,'show'])->middleware('can:view,project');
     Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
     Route::put('/projects/{project}',[ProjectController::class,'update']);
-    //Route::delete('/projects/{project}',[ProjectController::class,'destroy']);
 
-
+    /*
+    |--------------------------------------------------------------------------
+    | Routes for Tasks
+    |--------------------------------------------------------------------------
+    */
     Route::get('/projects/{project}/tasks/create',[TaskController::class,'create']);
     Route::post('/projects/{project}/tasks',[TaskController::class,'store']);
     Route::get('/projects/{project}/tasks/{task}',[TaskController::class,'show']);
@@ -44,11 +55,19 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/move-task-to-a-new-group',[TaskController::class,'moveTask']);
     Route::post('/projects/{project}/groups',[GroupController::class,'store'])->middleware('five.groups.only');
 
-
+    /*
+    |--------------------------------------------------------------------------
+    | Routes for comments
+    |--------------------------------------------------------------------------
+    */
     Route::post('/tasks/{task}/comments',[CommentController::class,'store']);
     Route::put('/tasks/{task}/comments/{comment}',[CommentController::class,'update']);
 
-
+    /*
+    |--------------------------------------------------------------------------
+    | Routes for Teams
+    |--------------------------------------------------------------------------
+    */
     Route::get('/teams',[TeamController::class,'index']);
     Route::get('/teams/create',[TeamController::class,'create']);
     Route::post('/teams',[TeamController::class,'store']);
@@ -58,6 +77,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/teams/{team}/add-user-to-team',[TeamController::class,'addUser']);
     Route::post('/teams/{team}/remove-user-from-team',[TeamController::class,'removeUser']);
 
+    /*
+    |--------------------------------------------------------------------------
+    | Routes for users
+    |--------------------------------------------------------------------------
+    */
     Route::get('/users',[UserController::class,'index']);
     Route::get('/users/create',[UserController::class,'create']);
     Route::post('/users',[UserController::class,'store']);

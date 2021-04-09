@@ -9,7 +9,6 @@
 
 
     <div class="grid grid-cols-4 gap-5">
-
             @forelse($projects as $project)
                 <div class="bg-white border-b border-gray-200 p-6 rounded-lg shadow-sm">
                     <a class=" mt-2 block font-bold mb-1"
@@ -30,8 +29,5 @@
             @empty
                 <li>No projects available</li>
             @endforelse
-
     </div>
-
-
 </x-app-layout>
