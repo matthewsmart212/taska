@@ -67,6 +67,20 @@ class User extends Authenticatable
         return $this->role_id == 1;
     }
 
+    public function isManager()
+    {
+        return $this->role_id == 2;
+    }
+
+    public function isAdminOrManager()
+    {
+        if($this->isAdmin() || $this->isManager()){
+            return true;
+        }
+
+        return false;
+    }
+
     public function path()
     {
         return '/users/' . $this->id;

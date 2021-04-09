@@ -19,7 +19,7 @@ class ProjectPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->isAdmin()) {
+        if ($user->isAdminOrManager()) {
             return true;
         }
     }
@@ -61,7 +61,7 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        return $user->isAdmin();
+        return $user->isAdminOrManager();
     }
 
     /**
@@ -73,7 +73,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $user->isAdmin();
+        return $user->isAdminOrManager();
     }
 
     /**
@@ -85,7 +85,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $user->isAdmin();
+        return $user->isAdminOrManager();
     }
 
     /**
@@ -97,7 +97,7 @@ class ProjectPolicy
      */
     public function restore(User $user, Project $project)
     {
-        return $user->isAdmin();
+        return $user->isAdminOrManager();
     }
 
     /**
@@ -109,6 +109,6 @@ class ProjectPolicy
      */
     public function forceDelete(User $user, Project $project)
     {
-        return $user->isAdmin();
+        return $user->isAdminOrManager();
     }
 }
