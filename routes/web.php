@@ -59,6 +59,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/teams/{team}/remove-user-from-team',[TeamController::class,'removeUser']);
 
     Route::get('/users',[UserController::class,'index']);
+    Route::get('/users/create',[UserController::class,'create']);
+    Route::post('/users',[UserController::class,'store']);
+    Route::get('/users/{user}',[UserController::class,'show']);
+    Route::get('/users/{user}/edit',[UserController::class,'edit']);
+    Route::put('/users/{user}/update-password',[UserController::class,'updatePassword']);
+    Route::put('/users/{user}',[UserController::class,'update']);
 });
 
 

@@ -2,7 +2,7 @@
 
     <div class="flex justify-between mb-5 border-b border-gray-200 pb-6">
         <h1 class="text-lg font-black mt-1">All Users</h1>
-        <a href="/users/invite" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Invite user</a>
+        <a href="/users/create" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Create user</a>
     </div>
 
 
@@ -32,8 +32,9 @@
                         <td class="p-4">
                             {{ $user->created_at->diffForHumans() }}
                         </td>
-                        <td class="w-24 p-4">
-                            <a href="" class="bg-gray-500 p-2 text-white rounded-lg">View</a>
+                        <td class=" p-4">
+                            <a href="/users/{{ $user->id }}" class="bg-gray-500 p-2 text-white rounded-lg">View</a>
+                            <a href="/users/{{ $user->id }}/edit" class="bg-gray-500 p-2 text-white rounded-lg">Edit</a>
                         </td>
                     </tr>
                 @endforeach
