@@ -43,7 +43,6 @@ class ProjectController extends Controller
             ['title'=>'required','description'=>'required']
         ));
 
-
         return redirect($project->path());
     }
 }
