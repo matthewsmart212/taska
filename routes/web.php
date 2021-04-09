@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function() {
     |--------------------------------------------------------------------------
     */
     Route::get('/projects',[ProjectController::class,'index']);
-    Route::get('/projects/create',[ProjectController::class,'create']);
+    Route::get('/projects/create',[ProjectController::class,'create'])->middleware('can:create,App\Models\Project');
     Route::post('/projects',[ProjectController::class,'store']);
     Route::get('/projects/{project}',[ProjectController::class,'show'])->middleware('can:view,project');
     Route::get('/projects/{project}/edit',[ProjectController::class,'edit']);
