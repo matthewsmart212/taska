@@ -18,8 +18,11 @@
                     <div class="flex justify-between mt-4">
                         <div>
                             <span class="inline-block mr-2">Users: </span>
-                            <img src="/images/profile-pic.png" width="30" height="30" class="rounded-full inline-block">
-                            <img src="/images/profile-pic.png" width="30" height="30" class="rounded-full inline-block">
+                            @foreach($project->teams as $team)
+                                @foreach($team->users as $user)
+                                    <img src="/images/profile-pic.png" width="30" height="30" class="rounded-full inline-block">
+                                @endforeach
+                            @endforeach
                         </div>
                         <div>
                             <a href="{{ $project->path() }}" class="bg-gray-400 py-1 px-3 text-white rounded-lg block">View</a>
