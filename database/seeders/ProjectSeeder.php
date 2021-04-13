@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,18 +16,10 @@ class ProjectSeeder extends Seeder
     public function run()
     {
         DB::table('projects')->insert([
-            'title' => 'Project one',
-            'background_image' => '/images/backgrounds/9.jpg',
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Project two',
-            'background_image' => '/images/backgrounds/8.jpg',
-        ]);
-
-        DB::table('projects')->insert([
-            'title' => 'Project three',
-            'background_image' => '/images/backgrounds/6.jpg',
+            'title' => 'Example Project',
+            'background_image' => '/images/backgrounds/5.jpg',
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
     }
 }
