@@ -16,4 +16,11 @@ class GroupController extends Controller
 
         return Redirect($project->path());
     }
+
+    public function update(Project $project,Group $group)
+    {
+        $group->update(request()->validate(['title'=>'required']));
+
+        return Redirect($project->path());
+    }
 }

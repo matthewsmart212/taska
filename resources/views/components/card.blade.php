@@ -8,10 +8,10 @@
                 <span class="inline-block">{{ $task->title }}</span>
                 </i>
             </div>
-
             <hr style="height:5px;border:0;"/>
 
             @if($task->comments->count() > 0)
+
                 <i class="far fa-comment text-gray-500 mr-2"><span class="font-semibold" style='margin-left:2px; font-family:Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";'>{{ $task->comments->count() }}</span></i>
             @endif
 

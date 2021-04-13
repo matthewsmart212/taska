@@ -21,7 +21,36 @@
         <ul class="flex groups">
             @foreach($project->groups as $group)
                 <li class="bg-gray-100 rounded-md p-2 mr-4 inline-block float-left" style="height:fit-content;width:250px;" data-group-id="{{ $group->id }}">
-                    <h2 class="text-xs font-bold ml-2 mt-1 mb-2 text-gray-700">{{ $group->title }}</h2>
+
+
+                    <form method="POST" action="{{ $project->path() }}/groups/{{ $group->id }}">
+                        @csrf
+
+                        <div class="flex justify-between">
+                            <div>
+                                <h2 class="text-xs font-bold ml-2 mt-1 mb-2 text-gray-700 inline-block">{{ $group->title }}</h2>
+                                <input type="text"
+                                       class="text-xs inline-block rounded-md border border-gray-300 mt-1 hidden p-1"
+                                       placeholder="Write a comment ..."
+                                       name="title"
+                                       required
+                                       style="height:inherit;padding-right:30px;"
+                                       value="{{ $group->title }}"
+                                />
+                                <i class="fas fa-times-circle text-gray-400 hover:text-gray-600 text-sm ml-1 hidden cancel-group-title inline-block" style="margin-top:2px;"></i>
+                            </div>
+                            <div>
+                                <i class="fas fa-pen-square text-gray-400 hover:text-gray-600 ml-1 text-sm cursor-pointer update-group-title"></i>
+                                <button id="title-button" class="hidden fas fa-check-square text-gray-400 hover:text-gray-600 ml-3 cursor-pointer text-sm inline-block"></button>
+                            </div>
+                        </div>
+
+
+
+
+                        <i class="fas fa-times-circle text-gray-400 hover:text-gray-600 text-sm ml-1 hidden cancel-title inline-block" style="margin-left:-25px;"></i>
+                        <button id="title-button" class="hidden fas fa-check-square text-gray-400 hover:text-gray-600 ml-3 cursor-pointer text-sm inline-block mt-1"></button>
+                    </form>
 
                     @forelse($group->tasks()->orderBy('order')->get() as $task)
                         @include('components.card')

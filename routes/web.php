@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function() {
     |--------------------------------------------------------------------------
     */
     Route::post('/projects/{project}/groups',[GroupController::class,'store'])->middleware('five.groups.only');
+    Route::post('/projects/{project}/groups/{group}',[GroupController::class,'update']);
 
     /*
     |--------------------------------------------------------------------------

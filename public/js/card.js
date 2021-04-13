@@ -37,6 +37,9 @@ function onPageLoad()
 
 
 
+$('.group-title').click(function(){
+    $(this).hide().next().show();
+});
 
 
 $('.create-new-group,.create-new-task').click(function(){
@@ -57,7 +60,14 @@ $('.cancel-description').click(function(){
     $(this).hide().prev().show().next().next().show().next().children().hide().next().hide();
 });
 
+$('.update-group-title').click(function(){
+    $(this).hide().next().show();
+    $(this).parent().prev().children().hide().next().show();
+});
 
+$('.cancel-group-title').click(function(){
+    $(this).hide().prev().hide().prev().show().parent().next().children().show().next().hide();
+});
 
 $('.update-title').click(function(){
     $(this).hide().prev().show().prev().hide();
@@ -70,7 +80,6 @@ $('.cancel-title').click(function(){
     $(this).prev().prev().hide().prev().show();
     $('#title-button').hide();
 });
-
 
 
 $('.write-message').click(function(){

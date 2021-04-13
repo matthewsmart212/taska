@@ -27,7 +27,7 @@ class TaskSeeder extends Seeder
             'group_id' => 2,
             'order' => 1,
             'title' => 'Example Task 2',
-            'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            'description' => null,
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
@@ -35,7 +35,7 @@ class TaskSeeder extends Seeder
             'group_id' => 3,
             'order' => 1,
             'title' => 'Example Task 3',
-            'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            'description' => null,
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
