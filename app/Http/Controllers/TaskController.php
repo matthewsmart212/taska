@@ -10,12 +10,7 @@ class TaskController extends Controller
 {
     public function show(Project $project,Task $task)
     {
-        return view('projects.tasks.show',['task'=>$task,'project'=>$project]);
-    }
-
-    public function create(Project $project)
-    {
-        return view('projects.tasks.create',['project'=>$project]);
+        return view('projects.show',['task'=>$task,'project'=>$project]);
     }
 
     public function store(Project $project)
@@ -31,18 +26,16 @@ class TaskController extends Controller
         return redirect($task->path());
     }
 
-    public function edit(Project $project,Task $task)
+    public function updateDescription(Project $project,Task $task)
     {
-        return view('projects.tasks.edit',['task'=>$task,'project'=>$project]);
+        $task->update(request()->validate(['description'=>'required']));
+
+        return redirect($task->path());
     }
 
-    public function update(Project $project,Task $task)
+    public function updateTitle(Project $project,Task $task)
     {
-        request()->validate([
-            'title'=>'required'
-        ]);
-
-        $task->update(request()->all());
+        $task->update(request()->validate(['title'=>'required']));
 
         return redirect($task->path());
     }

@@ -1,64 +1,57 @@
 <x-app-layout>
-
-    <div class="flex justify-between mb-5 border-b border-gray-200 pb-6">
-        <h1 class="text-lg font-black mt-1">{{ $project->title }}</h1>
-        <div>
-            @if(auth()->user()->isAdmin())
-                <a href="/projects/" class="py-2 px-4 bg-gray-300 text-white rounded-lg">Delete</a>
-                <!-- TODO: sort out form for deleting a project -->
-            @endif
-            <a href="/projects/" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Go Back</a>
-            @if(auth()->user()->isAdmin())
-                <a href="/projects/{{ $project->id }}/edit" class="py-2 px-4 bg-gray-500 text-white rounded-lg">Edit Project</a>
-            @endif
+    <div class="w-full bg-gray-200 bg-opacity-25 px-7 fixed py-2" style="top:56px;">
+        <div class="flex justify-between">
+            <div>
+                <a href="/projects/" class="text-white text-xl inline-block"><i class="fas fa-caret-square-left"></i></a>
+                <h1 class="text-white inline-block ml-2">{{ $project->title }}</h1>
+            </div>
+            <div class="pr-12">
+                <i class="fas fa-pen-square text-white text-xl ml-1 cursor-pointer" onclick="toggleModal('modal-id')"></i>
+            </div>
         </div>
     </div>
 
+    <main class="bg-gray-100 pt-20 px-7" style="margin-top:56px;min-height: calc(100vh - 57px); background-image:url('{{ $project->background_image }}');background-size:cover;" >
+        @include('modals.update-project')
 
-    <div class="w-full mb-6">
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-            <h1 class="text-lg">Project Information</h1>
-            <p class="mt-4">{{ $project->description }}</p>
-        </div>
-    </div>
-
-
-    <ul class="flex groups">
-        @foreach($project->groups as $group)
-            <li class="bg-gray-200 rounded-lg p-4 mr-4 inline-block float-left w-1/5" style="height:fit-content;" data-group-id="{{ $group->id }}">
-                <h2>{{ $group->title }}:</h2>
-                @forelse($group->tasks()->orderBy('order')->get() as $task)
-                    <div class="column" @if ($loop->first) style="min-height:50px;" @endif>
-                        <div>
-                            <a href="{{ $task->path() }}" class="portlet-header bg-white rounded-lg mt-4 p-4 block task" data-task-id="{{ $task->id }}">{{ $task->title }}</a>
-                        </div>
-                    </div>
-                @empty
-                    <div class="column" style="min-height:50px;"></div>
-                @endforelse
-
-                <p class="mt-4 text-gray-500 block text-xs create-new-task">Create new task</p>
-                <form class="hidden" method="POST" action="{{ $project->path() }}/tasks">
-                    @csrf
-                    <input type="text" name="group_id" hidden value="{{ $group->id }}">
-                    <input type="text" name="title" placeholder="Task name" class="w-3/4 rounded-lg mt-2 border-gray-400 inline-block">
-                    <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2">Go</button>
-                </form>
-            </li>
-        @endforeach
-
-        @if($project->groups->count() < 5)
-            <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left w-1/5" style="height:fit-content;">
-                <p class="create-new-group">Create new group</p>
-                <form class="hidden" method="POST" action="{{ $project->path() }}/groups">
-                    @csrf
-                    <input type="text" name="project_id" hidden value="{{ $project->id }}">
-                    <input type="text" name="title" placeholder="Group name" class="w-3/4 rounded-lg mt-2 border-gray-400 inline-block">
-                    <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2">Go</button>
-                </form>
-            </li>
+        @if(isset($task))
+            @include('modals.task')
         @endif
-    </ul>
 
+        <ul class="flex groups">
+            @foreach($project->groups as $group)
+                <li class="bg-gray-100 rounded-md p-2 mr-4 inline-block float-left" style="height:fit-content;width:250px;" data-group-id="{{ $group->id }}">
+                    <h2 class="text-xs font-bold ml-2 mt-1 mb-2 text-gray-700">{{ $group->title }}</h2>
 
+                    @forelse($group->tasks()->orderBy('order')->get() as $task)
+                        @include('components.card')
+                    @empty
+                        <div class="column" style="min-height:50px;"></div>
+                    @endforelse
+
+                    <i class="fas fa-plus text-gray-500 text-xs inline-block ml-1"></i>
+                    <p class="mt-2 text-gray-500 block text-xs create-new-task inline-block cursor-pointer">Create new task</p>
+
+                    <form class="hidden" method="POST" action="{{ $project->path() }}/tasks">
+                        @csrf
+                        <input type="text" name="group_id" hidden value="{{ $group->id }}">
+                        <input type="text" name="title" placeholder="Task name" class="w-3/4 rounded-lg mt-2 inline-block text-xs shadow-sm border-gray-200 border">
+                        <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2 text-xs">Add</button>
+                    </form>
+                </li>
+            @endforeach
+
+            @if($project->groups->count() < 5)
+                <li class="bg-gray-300 rounded-lg p-4 mr-4 inline-block float-left w-1/6" style="height:fit-content;">
+                    <p class="create-new-group">Create new group</p>
+                    <form class="hidden" method="POST" action="{{ $project->path() }}/groups">
+                        @csrf
+                        <input type="text" name="project_id" hidden value="{{ $project->id }}">
+                        <input type="text" name="title" placeholder="Group name" class="w-3/4 rounded-lg mt-2 border-gray-400 inline-block">
+                        <button class="w-1/5 bg-gray-500 text-white rounded-lg inline-block p-2 float-right mt-2">Go</button>
+                    </form>
+                </li>
+            @endif
+        </ul>
+    </main>
 </x-app-layout>

@@ -9,11 +9,11 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','title','description'];
+    protected $fillable = ['title','background_image'];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function path()
@@ -24,11 +24,6 @@ class Project extends Model
     public function groups()
     {
         return $this->hasMany(Group::class);
-    }
-
-    public function teams()
-    {
-        return $this->belongsToMany(Team::class);
     }
 
     public function tasks()

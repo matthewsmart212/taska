@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -18,30 +19,33 @@ class ProjectController extends Controller
         return view('projects.show',['project'=>$project]);
     }
 
-    public function create()
-    {
-        return view('projects.create');
-    }
-
     public function store()
     {
-        $project = auth()->user()->projects()->create(request()->validate(
-            ['title'=>'required','description'=>'required']
-        ));
+        $attributes = request()->validate([
+            'title'=>'required|unique:projects',
+            'background_image'=>'required'
+        ]);
+
+        $attributes['background_image'] = '/images/backgrounds/' . request('background_image') . '.jpg';
+
+        $project = auth()->user()->projects()->create($attributes);
 
         return redirect($project->path());
     }
 
-    public function edit(Project $project)
-    {
-        return view('projects.edit',['project'=>$project]);
-    }
-
     public function update(Project $project)
     {
-        auth()->user()->projects()->update(request()->validate(
-            ['title'=>'required','description'=>'required']
-        ));
+        $attributes = request()->validate([
+            'title'=>[
+                'required',
+                Rule::unique('projects')->ignore($project->title,'title')
+            ],
+            'background_image'=>'required'
+        ]);
+
+        $attributes['background_image'] = '/images/backgrounds/' . request('background_image') . '.jpg';
+
+        $project->update($attributes);
 
         return redirect($project->path());
     }

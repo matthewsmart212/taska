@@ -44,17 +44,12 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class);
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
-    }
-
-    public function teams()
-    {
-        return $this->belongsToMany(Team::class);
     }
 
     public function role()

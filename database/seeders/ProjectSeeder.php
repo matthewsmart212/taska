@@ -15,23 +15,18 @@ class ProjectSeeder extends Seeder
     public function run()
     {
         DB::table('projects')->insert([
-            'user_id' => 1,
             'title' => 'Project one',
-            'description' => 'This is the description for one'
+            'background_image' => '/images/backgrounds/9.jpg',
         ]);
 
         DB::table('projects')->insert([
-            'user_id' => 1,
             'title' => 'Project two',
-            'description' => 'This is the description for two'
+            'background_image' => '/images/backgrounds/8.jpg',
         ]);
 
         DB::table('projects')->insert([
-            'user_id' => 1,
             'title' => 'Project three',
-            'description' => 'This is the description for three'
+            'background_image' => '/images/backgrounds/6.jpg',
         ]);
-
-
     }
 }

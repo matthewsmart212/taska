@@ -3835,52 +3835,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/card.js":
-/*!******************************!*\
-  !*** ./resources/js/card.js ***!
-  \******************************/
-/***/ (() => {
-
-$(onPageLoad);
-
-function onPageLoad() {
-  $(".column").sortable({
-    connectWith: ".column",
-    handle: ".portlet-header",
-    start: function start(event, ui) {
-      ui.item.addClass('tilt');
-    },
-    stop: function stop(event, ui) {
-      ui.item.removeClass('tilt');
-      var task_ids = [];
-      var group = ui.item.parent().parent();
-      group.find('a').each(function () {
-        task_ids.push($(this).attr('data-task-id'));
-      }); //let task_id = task.attr('data-task-id');
-
-      var group_id = group.attr('data-group-id');
-      $.ajax({
-        url: "/move-task-to-a-new-group",
-        type: "POST",
-        data: {
-          task_ids: task_ids,
-          group_id: group_id,
-          _token: '{{ csrf_token() }}'
-        }
-      });
-    }
-  });
-}
-
-$('.create-new-group,.create-new-task').click(function () {
-  $(this).next().show();
-});
-$('.update-comment').click(function () {
-  $(this).parent().prev().show().prev().hide();
-});
-
-/***/ }),
-
 /***/ "./node_modules/lodash/lodash.js":
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
@@ -21459,7 +21413,6 @@ process.umask = function() { return 0; };
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/card.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
