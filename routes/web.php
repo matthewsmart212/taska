@@ -67,20 +67,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     /*
     |--------------------------------------------------------------------------
-    | Routes for Teams
-    |--------------------------------------------------------------------------
-    */
-    Route::get('/teams',[TeamController::class,'index']);
-    Route::get('/teams/create',[TeamController::class,'create']);
-    Route::post('/teams',[TeamController::class,'store']);
-    Route::get('/teams/{team}',[TeamController::class,'show']);
-    Route::get('/teams/{team}/edit',[TeamController::class,'edit']);
-    Route::put('/teams/{team}',[TeamController::class,'update']);
-    Route::post('/teams/{team}/add-user-to-team',[TeamController::class,'addUser']);
-    Route::post('/teams/{team}/remove-user-from-team',[TeamController::class,'removeUser']);
-
-    /*
-    |--------------------------------------------------------------------------
     | Routes for users
     |--------------------------------------------------------------------------
     */
@@ -99,7 +85,6 @@ Route::group(['middleware' => 'auth'], function() {
     |--------------------------------------------------------------------------
     */
     Route::post('/move-task-to-a-new-group',[TaskController::class,'moveTask']);
-    Route::post('/get-task',[TaskController::class,'getTask']);
 
 });
 
