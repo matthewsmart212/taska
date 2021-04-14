@@ -1,11 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisterCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +14,15 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {return 'hello';});
+Route::get('/test', function () {return 'hello';});
 
 
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::post('/register-company',[RegisterCompanyController::class,'store']);
+});
 
 
 

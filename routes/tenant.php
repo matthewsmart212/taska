@@ -23,17 +23,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware([
 
+
+Route::middleware([
     'web',
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class
 
 ])->group(function () {
-
-    Route::get('/', function () {
-        return view('welcome');
-    });
 
     Route::middleware(['auth'])->group(function () {
 
