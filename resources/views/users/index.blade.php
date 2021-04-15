@@ -25,7 +25,7 @@
                     @foreach($users as $user)
                         <tr class="bg-white border-b border-gray-200">
                             <td class="p-4">
-                                <img src="/images/profile-pic.png" width="30" height="30" class="rounded-full inline-block"/>
+                                <img src="{{ $user->avatar() }}" style="width:30px; height:30px;" class="rounded-full inline-block"/>
                                 <h2 class="inline-block ml-2 font-semibold">{{ $user->name }}</h2>
                             </td>
                             <td class="p-4">

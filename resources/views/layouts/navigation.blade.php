@@ -30,7 +30,7 @@
             <div>
                 <div x-data="{ dropdownOpen: false }" class="relative inline-block mt-1" >
                     <button @click="dropdownOpen = !dropdownOpen" class="relative z-10 block rounded-md bg-white p-2 focus:outline-none ">
-                        <img src="/images/profile-pic.png" width="30" height="30" class="rounded-full inline-block mr-2"/>
+                        <img src="{{ auth()->user()->avatar() }}" style="width:30px;height:30px;" class="rounded-full inline-block mr-2"/>
                         <span class="inline-block">{{ auth()->user()->name }}</span>
                         <svg class="h-5 w-5 text-gray-800 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
