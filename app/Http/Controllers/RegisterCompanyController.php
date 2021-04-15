@@ -6,6 +6,7 @@ use App\Tenant;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Artisan;
 
 class RegisterCompanyController extends Controller
 {
@@ -34,6 +35,8 @@ class RegisterCompanyController extends Controller
                 'email'=>$this->attributes['email'],
                 'password'=>Hash::make($this->attributes['password'])
             ]);
+
+            Artisan::call('db:seed');
         });
 
         $data = [
