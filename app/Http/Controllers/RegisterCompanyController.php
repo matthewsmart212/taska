@@ -23,6 +23,7 @@ class RegisterCompanyController extends Controller
         $id = $this->slugify(request('company_name'));
         $domain = $id .'.localhost';
 
+
         $tenant = Tenant::create(['id' => $id]);
         $tenant->domains()->create(['domain' => $domain]);
 
@@ -40,9 +41,9 @@ class RegisterCompanyController extends Controller
             'domain'=>$domain
         ];
 
-        Mail::to('matthew.smart212@gmail.com')->send(new CompanyCreated($data));
+        Mail::to($this->attributes['email'])->send(new CompanyCreated($data));
 
-        return redirect('http://'.$domain);
+        return redirect('http://'.$domain .'/login');
     }
 
     function slugify($string){

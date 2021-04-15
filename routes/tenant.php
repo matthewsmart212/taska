@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -10,6 +11,9 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +36,7 @@ Route::middleware([
 
 ])->group(function () {
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth','verified'])->group(function () {
 
         /*
         |--------------------------------------------------------------------------
@@ -99,5 +103,24 @@ Route::middleware([
 
     });
 
+    Route::get('/welcome',[WelcomeController::class,'welcome']);
+
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->middleware('auth')->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        return redirect('/dashboard');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+    //Auth::routes(['verify' => true]);
     require __DIR__.'/auth.php';
 });
