@@ -41,7 +41,6 @@
                             </td>
                             <td class="p-4">
                                 <a href="/users/{{ $user->id }}" class="far fa-eye text-purple-300 hover:text-purple-600 p-2 pl-0 cursor-pointer"></a>
-                                <a href="/users/{{ $user->id }}/edit" class="far fa-edit text-purple-300 hover:text-purple-600 p-2 cursor-pointer"></a>
                                 <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 cursor-pointer"></i>
                             </td>
                         </tr>

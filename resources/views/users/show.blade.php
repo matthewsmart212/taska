@@ -3,7 +3,7 @@
     <div class="w-full bg-gray-200 bg-opacity-25 px-7 fixed py-2" style="top:56px;">
         <div class="flex justify-between">
             <div>
-                <h1 class="text-white inline-block">Your Profile</h1>
+                <h1 class="text-white inline-block">{{ $user->name }}</h1>
             </div>
         </div>
     </div>
@@ -55,13 +55,20 @@
                     </div>
 
                     <!--footer-->
-                    <div class="flex items-center p-6 border-t border-solid border-blueGray-200 rounded-b mt-6">
-                        <button class="mx-auto bg-purple-400 text-white py-4 px-6 text-md font-bold hover:bg-purple-600" id="update-user">
-                            Update Profile
-                        </button>
-                        <button class="hidden mx-auto bg-gray-400 text-white py-4 px-6 text-md font-bold hover:bg-gray-600" id="cancel-update-user">
-                            Cancel
-                        </button>
+                    <div class="flex items-center p-6 border-t border-solid border-blueGray-200 rounded-b mt-6 justify-between">
+
+                            <div>
+                                <a href="/users" class="bg-purple-100 text-purple-400 py-4 px-6 text-md font-bold hover:bg-purple-400 hover:text-white">Back to Users</a>
+                            </div>
+                            <div>
+                                <button class="bg-purple-400 text-white py-4 px-6 text-md font-bold hover:bg-purple-600" id="update-user">
+                                    Update Profile
+                                </button>
+                                <button class="hidden bg-gray-400 text-white py-4 px-6 text-md font-bold hover:bg-gray-600" id="cancel-update-user">
+                                    Cancel
+                                </button>
+                            </div>
+
                     </div>
 
                 </div>
