@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -14,7 +16,7 @@ class ProfileController extends Controller
         return view('profiles.show',['user'=>$user]);
     }
 
-    public function update(User $user)
+    public function update(User $user,Request $request)
     {
         $attributes = request()->validate([
             'name' => 'required|string|max:255',
@@ -22,8 +24,13 @@ class ProfileController extends Controller
             'avatar' => 'file'
         ]);
 
+        $currentAvatar = explode('/',$user->avatar());
+
         if(request('avatar')){
-            $attributes['avatar'] = request('avatar')->store('avatars');
+            if($currentAvatar[1] !== 'images'){
+                Storage::disk('public')->delete($currentAvatar[2]);
+            }
+            $attributes['avatar'] = '/uploads/' . Storage::disk('public')->putFile('', $request->file('avatar'));
         }
 
         $user->update($attributes);

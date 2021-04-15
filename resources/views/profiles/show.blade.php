@@ -17,7 +17,7 @@
                 <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                     <!--header-->
                     <div class="py-5 px-10">
-                        <img src="{{ $user->avatar() }}" class="rounded-full mx-auto border-4 border-white" style="margin-top:-95px;">
+                        <img src="{{ $user->avatar() }}" class="rounded-full mx-auto border-4 border-white" style="margin-top:-95px;width:150px;height:150px;">
                         <div class="user-details">
                             <h1 class="text-center text-xl mt-4">{{ $user->name }}</h1>
                             <p class="text-center mt-4">{{ $user->email }}</p>
