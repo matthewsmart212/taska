@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\CompanyCreated;
 use App\Tenant;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterCompanyController extends Controller
 {
@@ -32,6 +34,13 @@ class RegisterCompanyController extends Controller
                 'password'=>Hash::make($this->attributes['password'])
             ]);
         });
+
+        $data = [
+            'company'=>$this->attributes,
+            'domain'=>$domain
+        ];
+
+        Mail::to('matthew.smart212@gmail.com')->send(new CompanyCreated($data));
 
         return redirect('http://'.$domain);
     }

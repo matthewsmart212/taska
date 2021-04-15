@@ -28,7 +28,7 @@
         </style>
     </head>
     <body class="antialiased">
-        @if ($_SERVER['HTTP_HOST'] == "localhost")
+        @if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "170491f6ce34.ngrok.io")
             @include('landing-pages.central')
         @else
             @include('landing-pages.tenant')
