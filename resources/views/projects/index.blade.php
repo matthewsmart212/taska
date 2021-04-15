@@ -23,7 +23,11 @@
 
                 </div>
             @endforeach
-            <div class="bg-gray-200 bg-opacity-75 p-6 rounded-lg text-center cursor-pointer hover:bg-gray-700 hover:text-white" onclick="toggleModal('modal-id')">
+            <div
+                class="bg-gray-200 bg-opacity-75 p-6 rounded-lg text-center cursor-pointer hover:bg-gray-700 hover:text-white"
+                onclick="toggleModal('modal-id')"
+                style="min-height:120px;"
+            >
                 <p class="inline-block mt-6">Create new project</p>
             </div>
     </div>
