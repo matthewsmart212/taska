@@ -89,8 +89,6 @@ Route::middleware([
         |--------------------------------------------------------------------------
         */
         Route::get('/users',[UserController::class,'index']);
-        Route::get('/users/create',[UserController::class,'create']);
-        Route::post('/users',[UserController::class,'store']);
         Route::get('/users/{user}',[UserController::class,'show']);
         Route::get('/users/{user}/edit',[UserController::class,'edit']);
         Route::put('/users/{user}/update-password',[UserController::class,'updatePassword']);

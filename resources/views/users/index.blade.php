@@ -28,20 +28,20 @@
                 </thead>
                 <tbody>
                     @foreach($users as $user)
-                        <tr class="bg-white border-b border-gray-200">
+                        <tr class="bg-white border-b border-gray-200 hover:bg-purple-100">
                             <td class="p-4">
                                 <img src="{{ $user->avatar() }}" style="width:30px; height:30px;" class="rounded-full inline-block"/>
                                 <h2 class="inline-block ml-2 font-semibold">{{ $user->name }}</h2>
                             </td>
                             <td class="p-4">
-                                Admin
+                                {{ $user->role->role }}
                             </td>
                             <td class="p-4">
                                 Jan 21 2020
                             </td>
                             <td class="p-4">
-                                <i class="far fa-eye text-purple-300 hover:text-purple-600 p-2 pl-0 cursor-pointer"></i>
-                                <i class="far fa-edit text-purple-300 hover:text-purple-600 p-2 cursor-pointer"></i>
+                                <a href="/users/{{ $user->id }}" class="far fa-eye text-purple-300 hover:text-purple-600 p-2 pl-0 cursor-pointer"></a>
+                                <a href="/users/{{ $user->id }}/edit" class="far fa-edit text-purple-300 hover:text-purple-600 p-2 cursor-pointer"></a>
                                 <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 cursor-pointer"></i>
                             </td>
                         </tr>

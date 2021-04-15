@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -15,28 +17,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show',['user'=>$user]);
-    }
-
-    public function create()
-    {
-        return view('users.create',['roles'=>Role::orderBy('role', 'desc')->get()]);
-    }
-
-    public function store()
-    {
-        $attributes = request()->validate(
-            ['name'=>'required','email'=>'required','role_id'=>'required','password'=>'required|min:6|confirmed']
-        );
-
-        $user = User::create([
-            'name'=>$attributes['name'],
-            'role_id'=>$attributes['role_id'],
-            'email'=>$attributes['email'],
-            'password'=>Hash::make($attributes['password']),
-        ]);
-
-        return redirect($user->path());
+        $roles = Role::all();
+        return view('users.show',['user'=>$user,'roles'=>$roles]);
     }
 
     public function edit(User $user)
@@ -44,13 +26,27 @@ class UserController extends Controller
         return view('users.edit',['user'=>$user,'roles'=>Role::all()]);
     }
 
-    public function update(User $user)
+    public function update(User $user,Request $request)
     {
-        $user->update(request()->validate(
-            ['name'=>'required','email'=>'required','role_id'=>'required']
-        ));
+        $attributes = request()->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'role_id'=>'required',
+            'avatar' => 'file'
+        ]);
 
-        return redirect($user->path());
+        $currentAvatar = explode('/',$user->avatar());
+
+        if(request('avatar')){
+            if($currentAvatar[1] !== 'images'){
+                Storage::disk('public')->delete($currentAvatar[2]);
+            }
+            $attributes['avatar'] = '/uploads/' . Storage::disk('public')->putFile('', $request->file('avatar'));
+        }
+
+        $user->update($attributes);
+
+        return redirect('/users/'.$user->id)->with('status','User successfully updated!');
     }
 
     public function updatePassword(User $user)
