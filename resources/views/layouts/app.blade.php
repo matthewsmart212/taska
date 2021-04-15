@@ -57,7 +57,7 @@
     </head>
     <body class="font-sans antialiased">
 
-            <aside class="inline-block bg-gray-500 h-screen fixed" style="width:50px;z-index:1000000000000;">
+            <aside class="inline-block bg-gray-600 h-screen fixed" style="width:50px;z-index:1000000000000;">
                 @include('components.sidebar')
             </aside>
 

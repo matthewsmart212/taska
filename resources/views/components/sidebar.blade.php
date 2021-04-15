@@ -1,5 +1,5 @@
-<div class="bg-gray-700 p-4">
-    <h1 class="text-white">TA</h1>
+<div class="bg-black" style="padding-top:6px;">
+    <img src="/images/taska-small-logo.png"/>
 </div>
 <ul class="p-4 text-gray-200">
     <li class="mb-4 mt-4 block"><a href="/dashboard"><i class="fas fa-home mr-2"></i></a></li>

@@ -27,8 +27,7 @@
                     <li class="inline-block mr-2"></li>
                 </ul>
             </div>
-            <div>
-                login bit here
+            <div>login bit here
             </div>
         </div>
     </div>
