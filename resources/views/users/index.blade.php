@@ -41,15 +41,46 @@
                             </td>
                             <td class="p-4">
                                 <a href="/users/{{ $user->id }}" class="far fa-eye text-purple-300 hover:text-purple-600 p-2 pl-0 cursor-pointer"></a>
-                                <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 cursor-pointer"></i>
+                                <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 cursor-pointer" onclick="toggleModal('delete-user')" data-user-id="{{ $user->id }}"></i>
+                                @include('modals.confirm-user-delete')
+
                             </td>
                         </tr>
                     @endforeach
-
+                    <form id="delete-user" method="POST">
+                        @csrf
+                        <input type="text" name="_method" value="DELETE" hidden />
+                    </form>
                 </tbody>
             </table>
         </div>
     </main>
+
+    <script type="text/javascript">
+
+        $('.fa-trash-alt').click(function(){
+           // document.getElementById("delete-user").action = "/users/" + $(this).attr('data-user-id');
+            $('form#delete-user').attr('action', '/users/' + $(this).attr('data-user-id'));
+        });
+
+        function toggleModal(modalID){
+            document.getElementById(modalID).classList.toggle("hidden");
+            document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+            document.getElementById(modalID).classList.toggle("flex");
+            document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+        }
+
+        $('.background-image').click(function(){
+            $('.fa-check-circle').hide();
+            $(this).prev().show();
+            $('#background_image').val($(this).attr('data-bg-id'));
+        });
+
+        function deleteUser()
+        {
+            $('form#delete-user').submit();
+        }
+    </script>
 
 </x-app-layout>
 

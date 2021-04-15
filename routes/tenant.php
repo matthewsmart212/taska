@@ -90,16 +90,8 @@ Route::middleware([
         */
         Route::get('/users',[UserController::class,'index']);
         Route::get('/users/{user}',[UserController::class,'show']);
-        Route::get('/users/{user}/edit',[UserController::class,'edit']);
-        Route::put('/users/{user}/update-password',[UserController::class,'updatePassword']);
         Route::put('/users/{user}',[UserController::class,'update']);
-
-        /*
-        |--------------------------------------------------------------------------
-        | Routes for task ajax requests
-        |--------------------------------------------------------------------------
-        */
-        Route::post('/move-task-to-a-new-group',[TaskController::class,'moveTask']);
+        Route::delete('/users/{user}', [UserController::class,'destroy']);
 
         /*
         |--------------------------------------------------------------------------
@@ -109,7 +101,12 @@ Route::middleware([
         Route::get('/profile',[ProfileController::class,'show']);
         Route::post('/profile/{user}',[ProfileController::class,'update']);
 
-
+        /*
+        |--------------------------------------------------------------------------
+        | Routes for task ajax requests
+        |--------------------------------------------------------------------------
+        */
+        Route::post('/move-task-to-a-new-group',[TaskController::class,'moveTask']);
     });
 
 

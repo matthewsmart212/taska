@@ -59,4 +59,11 @@ class UserController extends Controller
 
         return Redirect($user->path());
     }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect('/users')->with('status','User Successfully deleted.');
+    }
 }

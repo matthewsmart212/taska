@@ -36,17 +36,4 @@
     </div>
 </div>
 <div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
-<script type="text/javascript">
-    function toggleModal(modalID){
-        document.getElementById(modalID).classList.toggle("hidden");
-        document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-        document.getElementById(modalID).classList.toggle("flex");
-        document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-    }
 
-    $('.background-image').click(function(){
-        $('.fa-check-circle').hide();
-        $(this).prev().show();
-        $('#background_image').val($(this).attr('data-bg-id'));
-    });
-</script>
