@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <script src="/js/app.js" defer></script>
     </head>
-    <body>
+    <body style="background-image:url('/images/backgrounds/2.jpg');background-size:cover;">
         @include('components.errors')
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}

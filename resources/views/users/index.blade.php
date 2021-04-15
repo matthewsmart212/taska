@@ -3,11 +3,7 @@
     <div class="w-full bg-gray-200 bg-opacity-25 px-7 fixed py-2" style="top:56px;">
         <div class="flex justify-between">
             <div>
-                <a href="/projects/" class="text-white text-xl inline-block"><i class="fas fa-caret-square-left"></i></a>
-                <h1 class="text-white inline-block ml-2"> All Users</h1>
-            </div>
-            <div class="pr-12">
-                <i class="fas fa-pen-square text-white text-xl ml-1 cursor-pointer" onclick="toggleModal('modal-id')"></i>
+                <h1 class="text-white inline-block"> All Users</h1>
             </div>
         </div>
     </div>
@@ -15,61 +11,41 @@
 
     <main class="bg-gray-100 pt-20 px-7" style="margin-top:56px;min-height: calc(100vh - 57px); background-image:url('/images/backgrounds/2.jpg');background-size:cover;" >
 
-        <div class="grid grid-cols-7 gap-5">
-            @foreach($users as $user)
-                <div
-                    class="p-6 pl-0 pt-12 rounded-lg"
-                    style="height:120px; background-image:url('');background-size:cover;">
+        <div class="w-full">
+            <table class="w-1/2">
+                <thead>
+                    <tr class="bg-gray-100 text-left text-gray-600 border-b border-gray-200 ">
+                        <th class="p-4">USER</th>
+                        <th class="p-4">ROLE</th>
+                        <th class="p-4">CREATED AT</th>
+                        <th class=" p-4" width="140">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr class="bg-white border-b border-gray-200">
+                            <td class="p-4">
+                                <img src="/images/profile-pic.png" width="30" height="30" class="rounded-full inline-block"/>
+                                <h2 class="inline-block ml-2 font-semibold">{{ $user->name }}</h2>
+                            </td>
+                            <td class="p-4">
+                                Admin
+                            </td>
+                            <td class="p-4">
+                                Jan 21 2020
+                            </td>
+                            <td class="p-4">
+                                <i class="far fa-eye text-purple-300 hover:text-purple-600 p-2 pl-0 cursor-pointer"></i>
+                                <i class="far fa-edit text-purple-300 hover:text-purple-600 p-2 cursor-pointer"></i>
+                                <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 cursor-pointer"></i>
+                            </td>
+                        </tr>
+                    @endforeach
 
-                    <a class="block mb-1 text-white pl-6 bg-gray-700 bg-opacity-75 rounded-tr-md rounded-br-md"
-                       href="{{ $user->path() }}"> {{ $user->name }}
-                    </a>
-
-                </div>
-            @endforeach
-            <div class="bg-gray-200 bg-opacity-75 p-6 rounded-lg text-center cursor-pointer hover:bg-gray-700 hover:text-white" onclick="toggleModal('modal-id')">
-                <p class="inline-block mt-6">Create new project</p>
-            </div>
+                </tbody>
+            </table>
         </div>
     </main>
-
-
-
-    <div class="flex justify-between mb-5 border-b border-gray-200 pb-6">
-        <h1 class="text-lg font-black mt-1">All Users</h1>
-        <a href="/users/create" class="py-2 px-4 bg-gray-400 text-white rounded-lg">Create user</a>
-    </div>
-
-
-    <div class="w-full">
-        <table class="table-auto w-full text-left">
-            <thead>
-                <tr>
-                    <th class="p-4">Name</th>
-                    <th class="p-4">Joined</th>
-                    <th class="p-4">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($users as $user)
-                    <tr class="bg-white border-b border-gray-300 shadow-sm">
-                        <td class="p-4 w-64">
-                            <a href="">
-                                <img src="/images/profile-pic.png" alt="profile pic" width="30" height="30" class="rounded-full inline-block mr-3" /> {{ $user->name }}
-                            </a>
-                        </td>
-                        <td class="p-4">
-                            {{ $user->created_at->diffForHumans() }}
-                        </td>
-                        <td class=" p-4">
-                            <a href="/users/{{ $user->id }}" class="bg-gray-500 p-2 text-white rounded-lg">View</a>
-                            <a href="/users/{{ $user->id }}/edit" class="bg-gray-500 p-2 text-white rounded-lg">Edit</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
 
 </x-app-layout>
 

@@ -19,6 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'role_id',
+        'avatar',
         'email',
         'password',
     ];
@@ -79,5 +80,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function path()
     {
         return '/users/' . $this->id;
+    }
+
+    public function avatar()
+    {
+        if(is_null($this->avatar)){
+            return '/images/profile-pic.png';
+        }
+        return $this->avatar;
     }
 }

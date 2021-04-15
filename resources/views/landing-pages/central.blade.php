@@ -1,7 +1,7 @@
 @include('modals.central-register')
 @include('modals.central-login')
 
-<nav class="bg-white pb-3 border-b border-purple-100">
+<nav class="bg-white pb-3 border-b border-purple-100 fixed top-0 w-full">
     <div class="container m-auto px-48">
         <div class="flex justify-between mt-3">
             <div>
@@ -25,7 +25,7 @@
 </nav>
 
 
-<section class="bg-gray-100 py-16">
+<section class="bg-gray-100 py-16" style="margin-top:68px">
     <div class="container m-auto px-48">
         <div class="flex">
             <div class="w-2/5 pr-2 pt-14">

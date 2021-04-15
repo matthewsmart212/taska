@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,15 @@ Route::middleware([
         |--------------------------------------------------------------------------
         */
         Route::post('/move-task-to-a-new-group',[TaskController::class,'moveTask']);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Routes for profile
+        |--------------------------------------------------------------------------
+        */
+        Route::get('/profile',[ProfileController::class,'show']);
+        Route::post('/profile/{user}',[ProfileController::class,'update']);
+
 
     });
 

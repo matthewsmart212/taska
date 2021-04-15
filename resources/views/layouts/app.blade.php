@@ -20,6 +20,7 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script src="http://unpkg.com/turbolinks"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
         <!-- style to tilt task cards when moved between groups -->
         <style>.tilt {transform: rotate(3deg);-moz-transform: rotate(3deg);-webkit-transform: rotate(3deg);}</style>
