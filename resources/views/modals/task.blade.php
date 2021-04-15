@@ -1,5 +1,5 @@
 
-<div class="flex overflow-x-hidden overflow-y-auto fixed top-0 inset-x-0 z-50 outline-none focus:outline-none justify-center items-center" id="task">
+<div class="flex overflow-x-hidden overflow-y-auto fixed top-0 inset-x-0 z-50 outline-none focus:outline-none justify-center items-center" id="task" style="top:77px;">
     <div class="relative my-6" style="min-width:650px;max-width:650px;">
         <!--content-->
         <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-200 outline-none focus:outline-none pb-6">

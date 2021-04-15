@@ -3,11 +3,10 @@
         <div class="mr-2 flex-shrink-0">
             <a href="/">
                 <img
-                    src="/images/profile-pic.png"
+                    src="{{ auth()->user()->avatar() }}"
                     alt=""
                     class="rounded-full mr-2 mt-1"
-                    width="20"
-                    height="20"
+                    style="width:20px;height:20px;"
                 />
             </a>
         </div>
