@@ -15,6 +15,7 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\InviteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,16 @@ Route::middleware([
 
 
     });
+
+
+    Route::post('/set-up',[InviteController::class,'setUp']);
+    Route::get('invite', [InviteController::class,'invite'])->name('invite');
+    Route::post('invite', [InviteController::class,'process'])->name('process');
+    Route::get('accept/{token}', [InviteController::class,'accept'])->name('accept');
+
+
+
+
 
     Route::get('/welcome',[WelcomeController::class,'welcome']);
 

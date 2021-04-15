@@ -1,9 +1,14 @@
 <x-app-layout>
 
+    @include('modals.invite-user')
+
     <div class="w-full bg-gray-200 bg-opacity-25 px-7 fixed py-2" style="top:56px;">
         <div class="flex justify-between">
             <div>
                 <h1 class="text-white inline-block"> All Users</h1>
+            </div>
+            <div class="pr-12">
+                <i class="fas  fa-plus-square text-white text-xl ml-1 cursor-pointer" onclick="toggleModal('modal-id')"></i>
             </div>
         </div>
     </div>
