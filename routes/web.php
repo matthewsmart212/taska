@@ -19,7 +19,7 @@ Route::get('/test', function () {return 'hello';});
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', function () {
-        return view('welcome');
+        return redirect('/dashboard');
     });
     Route::post('/register-company',[RegisterCompanyController::class,'store']);
 });
