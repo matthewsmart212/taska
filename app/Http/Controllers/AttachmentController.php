@@ -13,9 +13,12 @@ class AttachmentController extends Controller
     public function store(Task $task,Request $request)
     {
         $attributes = request()->validate([
-            'link'=>'file|required'
+            'link'=>'required|mimes:jpeg,jpg,jpe,png,gif,pdf,ppt,pptx,docx,xls,xlsx'
         ]);
 
+        $mime = explode('/',$request->file('link')->getMimeType());
+
+        $attributes['mime'] = $mime[1];
         $attributes['link'] = '/attachments/' . Storage::disk('attachments')->putFile('', $request->file('link'));
 
         $task->attachments()->create($attributes);

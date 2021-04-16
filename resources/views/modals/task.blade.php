@@ -1,9 +1,7 @@
-
 <div class="flex overflow-x-hidden overflow-y-auto fixed top-0 inset-x-0 z-50 outline-none focus:outline-none justify-center items-center" id="task" style="top:77px;">
     <div class="relative my-6" style="min-width:800px;max-width:800px;">
         <!--content-->
         <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-gray-200 outline-none focus:outline-none pb-6">
-
             <!--header-->
             <form method="POST" action="{{ $task->path() }}/title">
                 @csrf
@@ -75,7 +73,7 @@
 
 
                         <!-- Attachment section -->
-                        <div class="border-b border-gray-300 pb-6">
+                        <div class="border-b border-gray-300 pb-6 @if($task->attachments->count() < 1) hidden @endif" id="attachment-section">
                             <div class="w-full flex p-6 pb-0 justify-between pb-3">
                                 <div>
                                     <div class="w-full inline-block">
@@ -83,6 +81,56 @@
                                         <strong class="ml-3">Attachments</strong>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="grid grid-cols-4 gap-3 pl-14 pr-6">
+                                @foreach($task->attachments as $attachment)
+                                    <div>
+                                        @switch($attachment->mime)
+                                            @case('jpeg')
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+                                            @break
+
+                                            @case('jpg')
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+                                            @break
+
+                                            @case('jpe')
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+                                            @break
+
+                                            @case('png')
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+                                            @break
+
+                                            @case('gif')
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+                                            @break
+
+                                            @case('pdf')
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="/images/pdf.png" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+                                            @break
+
+                                            @default
+                                                <a href="{{ $attachment->link }}" target="_blank">
+                                                    <img src="/images/file.png" style="width:121px; height:121px;" class="mb-3" />
+                                                </a>
+
+                                        @endswitch
+
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="w-full pl-14 pr-6">
                                 <form method="POST" action="/attachment/task/{{ $task->id }}" enctype="multipart/form-data" class="bg-gray-100 p-4 border border-gray-300">
@@ -120,11 +168,10 @@
                             <p class="px-6 pt-6">No messages</p>
                         @endforelse
                     </div>
-
                 </div>
                 <div style="width:500px;" class="border-l border-gray-300 px-4 py-6">
                     <ul>
-                        <li class="bg-gray-100 px-2 py-1 border border-gray-300 hover:bg-purple-100 cursor-pointer">
+                        <li class="bg-gray-100 px-2 py-1 border border-gray-300 hover:bg-purple-100 cursor-pointer" id="attachment">
                             <i class="fas fa-paperclip text-gray-600 mr-1"></i> Attachment
                         </li>
                         <li class="bg-gray-100 px-2 py-1 border border-gray-300 hover:bg-purple-100 cursor-pointer mt-2">
@@ -137,4 +184,10 @@
     </div>
 </div>
 <div class=" opacity-50 fixed inset-0 z-40 bg-black" id="task-backdrop"></div>
+
+<script>
+    $('#attachment').click(function(){
+        $('#attachment-section').removeClass('hidden');
+    });
+</script>
 

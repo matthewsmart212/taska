@@ -9,7 +9,7 @@ class Attachment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['task_id','link'];
+    protected $fillable = ['task_id','link','mime'];
 
     public function task()
     {

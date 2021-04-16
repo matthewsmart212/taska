@@ -17,6 +17,7 @@ class CreateAttachmentsTable extends Migration
             $table->id();
             $table->string('task_id');
             $table->string('link');
+            $table->string('mime');
             $table->timestamps();
         });
     }

@@ -18,6 +18,10 @@
             @if(isset($task->description))
                 <i class="fas fa-align-left text-gray-500 mr-2"></i>
             @endif
+
+            @if($task->attachments->count() > 0)
+                <i class="fas fa-paperclip text-gray-500 mr-2"></i>
+            @endif
         </a>
     </div>
 </div>
