@@ -3,7 +3,7 @@
         <div class="mr-2 flex-shrink-0">
             <a href="/">
                 <img
-                    src="{{ auth()->user()->avatar() }}"
+                    src="{{ $user->avatar() }}"
                     alt=""
                     class="rounded-full mr-2 mt-1"
                     style="width:20px;height:20px;"
