@@ -4,7 +4,7 @@
             @include('landing-pages.central')
         @else
             @php
-                header("Location: http://". $_SERVER['HTTP_HOST'] ."/welcome");
+                header("Location: http://". $_SERVER['HTTP_HOST'] ."/dashboard");
                 die();
             @endphp
         @endif
