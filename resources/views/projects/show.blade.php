@@ -1,9 +1,25 @@
 <x-app-layout>
-    <div class="w-full bg-gray-200 bg-opacity-25 px-7 fixed py-2" style="top:56px;">
+
+    @include('modals.invite-user-to-project')
+
+    <div class="w-full bg-gray-200 bg-opacity-20 px-7 fixed py-2" style="top:56px;">
         <div class="flex justify-between">
             <div>
                 <a href="/projects/" class="text-white text-xl inline-block"><i class="fas fa-caret-square-left"></i></a>
                 <h1 class="text-white inline-block ml-2">{{ $project->title }}</h1>
+
+                <span class="ml-4 mr-4 text-white">|</span>
+
+                <div class="inline-block">
+                    <i class="fas fa-users inline-block text-white mr-2"></i>
+                    <h2 class="inline-block text-white mr-2">Members: </h2>
+                    @foreach($project->users as $user)
+                        <img src="{{ $user->avatar() }}" style="width:22px;height:22px;" class="rounded-full inline-block border border-gray-300" />
+                    @endforeach
+                    <button class="bg-gray-200 ml-3 text-xs py-1 px-3 rounded-sm text-gray-600 hover:bg-gray-600 hover:text-white" onclick="toggleModal('invite-user-to-project')">
+                        + Invite user
+                    </button>
+                </div>
             </div>
             <div class="pr-12">
                 <i class="fas fa-pen-square text-white text-xl ml-1 cursor-pointer" onclick="toggleModal('modal-id')"></i>
@@ -83,4 +99,19 @@
             @endif
         </ul>
     </main>
+
+    <script type="text/javascript">
+        function toggleModal(modalID){
+            document.getElementById(modalID).classList.toggle("hidden");
+            document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+            document.getElementById(modalID).classList.toggle("flex");
+            document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+        }
+
+        $('.background-image').click(function(){
+            $('.fa-check-circle').hide();
+            $(this).prev().show();
+            $('#background_image').val($(this).attr('data-bg-id'));
+        });
+    </script>
 </x-app-layout>

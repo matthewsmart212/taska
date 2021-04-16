@@ -56,6 +56,7 @@ Route::middleware([
         Route::post('/projects',[ProjectController::class,'store'])->middleware('can:create,App\Models\Project');
         Route::get('/projects/{project}',[ProjectController::class,'show'])->middleware('can:view,project');
         Route::put('/projects/{project}',[ProjectController::class,'update'])->middleware('can:update,App\Models\Project');
+        Route::post('/add-user-to-project/{project}',[ProjectController::class,'addUser']);
 
         /*
         |--------------------------------------------------------------------------

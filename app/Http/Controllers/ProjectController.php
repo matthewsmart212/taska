@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -15,13 +16,16 @@ class ProjectController extends Controller
             $projects = auth()->user()->projects;
         }
 
-
         return view('projects.index',['projects'=>$projects]);
     }
 
     public function show(Project $project)
     {
-        return view('projects.show',['project'=>$project]);
+        $usersAlreadyInProject = $project->users->pluck('id')->toArray();
+
+        $usersNotInProject = User::whereNotIn('id',$usersAlreadyInProject)->get();
+
+        return view('projects.show',['project'=>$project,'usersNotInProject'=>$usersNotInProject]);
     }
 
     public function store()
@@ -53,5 +57,14 @@ class ProjectController extends Controller
         $project->update($attributes);
 
         return redirect($project->path());
+    }
+
+    public function addUser(Project $project)
+    {
+        $attributes = request()->validate(['user_id'=>'required|gt:0']);
+
+        $project->users()->attach($attributes['user_id']);
+
+        return redirect($project->path())->with('status','User successfully added to project');
     }
 }
