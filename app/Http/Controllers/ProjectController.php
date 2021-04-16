@@ -67,4 +67,13 @@ class ProjectController extends Controller
 
         return redirect($project->path())->with('status','User successfully added to project');
     }
+
+    public function removeUser(Project $project)
+    {
+        $attributes = request()->validate(['user_id'=>'required|gt:0']);
+
+        $project->users()->detach($attributes['user_id']);
+
+        return redirect($project->path())->with('status','User successfully removed from project');
+    }
 }

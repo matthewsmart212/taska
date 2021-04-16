@@ -2,7 +2,7 @@
 
     @include('modals.invite-user-to-project')
 
-    <div class="w-full bg-gray-200 bg-opacity-20 px-7 fixed py-2" style="top:56px;">
+    <div class="w-full bg-gray-200 bg-opacity-20 px-7 fixed py-2" id="tool-bar" style="top:56px;">
         <div class="flex justify-between">
             <div>
                 <a href="/projects/" class="text-white text-xl inline-block"><i class="fas fa-caret-square-left"></i></a>
@@ -14,9 +14,21 @@
                     <i class="fas fa-users inline-block text-white mr-2"></i>
                     <h2 class="inline-block text-white mr-2">Members: </h2>
                     @foreach($project->users as $user)
-                        <img src="{{ $user->avatar() }}" style="width:22px;height:22px;" class="rounded-full inline-block border border-gray-300" />
+                        <div class="inline">
+                            <img src="{{ $user->avatar() }}" style="width:22px;height:22px;" class="trigger rounded-full inline-block border border-gray-300 user-icon" />
+                            <div class="rounded-sm inline text-gray-600 hidden bg-gray-200 pl-3 pr-2 mr-2 border border-gray-300">
+                                <span class="text-xs mr-2">{{ $user->name }}</span>
+                                <span class="text-xs">
+                                    <i class="fas fa-user-minus hover:text-gray-800 cursor-pointer" onclick="$(this).next().submit();"></i>
+                                    <form class="hidden" method="POST" action="/remove-user-from-project/{{ $project->id }}">
+                                        @csrf
+                                        <input type="text" name="user_id" value="{{ $user->id }}"/>
+                                    </form>
+                                </span>
+                            </div>
+                        </div>
                     @endforeach
-                    <button class="bg-gray-200 ml-3 text-xs py-1 px-3 rounded-sm text-gray-600 hover:bg-gray-600 hover:text-white" onclick="toggleModal('invite-user-to-project')">
+                    <button class="border border-gray-300 bg-gray-200 ml-3 text-xs py-1 px-3 rounded-sm text-gray-600 hover:bg-gray-600 hover:text-white" onclick="toggleModal('invite-user-to-project')">
                         + Invite user
                     </button>
                 </div>
@@ -38,10 +50,8 @@
             @foreach($project->groups as $group)
                 <li class="bg-gray-100 rounded-md p-2 mr-4 inline-block float-left" style="height:fit-content;width:250px;" data-group-id="{{ $group->id }}">
 
-
                     <form method="POST" action="{{ $project->path() }}/groups/{{ $group->id }}">
                         @csrf
-
                         <div class="flex justify-between">
                             <div>
                                 <h2 class="text-xs font-bold ml-2 mt-1 mb-2 text-gray-700 inline-block">{{ $group->title }}</h2>
@@ -60,9 +70,6 @@
                                 <button id="title-button" class="hidden fas fa-check-square text-gray-400 hover:text-gray-600 ml-3 cursor-pointer text-sm inline-block"></button>
                             </div>
                         </div>
-
-
-
 
                         <i class="fas fa-times-circle text-gray-400 hover:text-gray-600 text-sm ml-1 hidden cancel-title inline-block" style="margin-left:-25px;"></i>
                         <button id="title-button" class="hidden fas fa-check-square text-gray-400 hover:text-gray-600 ml-3 cursor-pointer text-sm inline-block mt-1"></button>
@@ -101,6 +108,18 @@
     </main>
 
     <script type="text/javascript">
+
+        $('.user-icon').hover(
+            function(){
+                $('.user-icon').next().addClass('hidden');
+                $(this).next().removeClass('hidden');
+            }
+        );
+
+        $(document).on('mouseleave','#tool-bar',function(){
+            $('.user-icon').next().addClass('hidden');
+        });
+
         function toggleModal(modalID){
             document.getElementById(modalID).classList.toggle("hidden");
             document.getElementById(modalID + "-backdrop").classList.toggle("hidden");

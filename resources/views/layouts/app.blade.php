@@ -54,6 +54,9 @@
                 -webkit-transition: all 0.4s ease-in-out;
                 transition: all 0.4s ease-in-out;
             }
+
+            .stay-open{opacity:0; transition: all .3s ease;}
+            .stay-open.show{ opacity:1; }
         </style>
     </head>
     <body class="font-sans antialiased">

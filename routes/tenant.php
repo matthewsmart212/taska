@@ -57,6 +57,7 @@ Route::middleware([
         Route::get('/projects/{project}',[ProjectController::class,'show'])->middleware('can:view,project');
         Route::put('/projects/{project}',[ProjectController::class,'update'])->middleware('can:update,App\Models\Project');
         Route::post('/add-user-to-project/{project}',[ProjectController::class,'addUser']);
+        Route::post('/remove-user-from-project/{project}',[ProjectController::class,'removeUser']);
 
         /*
         |--------------------------------------------------------------------------
