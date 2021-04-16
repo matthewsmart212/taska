@@ -37,7 +37,7 @@
                             @csrf
                             <input type="text" name="_method" value="PUT" hidden />
                             <!-- Description -->
-                            <div class="w-full flex p-6 pb-0">
+                            <div class="w-full flex p-6 border-b border-gray-300" style="min-width:600px;">
                                 <div class="mr-5 flex-shrink-0">
                                     <i class="fas fa-align-left"></i>
                                 </div>
@@ -70,6 +70,30 @@
                                 </div>
                             </div>
                         </form>
+
+
+
+
+                        <!-- Attachment section -->
+                        <div class="border-b border-gray-300 pb-6">
+                            <div class="w-full flex p-6 pb-0 justify-between pb-3">
+                                <div>
+                                    <div class="w-full inline-block">
+                                        <i class="fas fa-paperclip"></i>
+                                        <strong class="ml-3">Attachments</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full pl-14 pr-6">
+                                <form method="POST" action="/attachment/task/{{ $task->id }}" enctype="multipart/form-data" class="bg-gray-100 p-4 border border-gray-300">
+                                    @csrf
+                                    <input type="file" name="link" />
+                                    <button class="float-right bg-gray-600 text-white px-2 py-1 inline-block rounded-md text-sm" type="submit">ADD FILE</button>
+                                </form>
+                            </div>
+                        </div>
+
+
 
 
                         <!-- Activity section -->

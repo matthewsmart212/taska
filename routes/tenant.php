@@ -16,6 +16,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InviteController;
+use App\Http\Controllers\AttachmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,14 @@ Route::middleware([
         */
         Route::get('/profile',[ProfileController::class,'show']);
         Route::post('/profile/{user}',[ProfileController::class,'update']);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Routes for Attachment
+        |--------------------------------------------------------------------------
+        */
+        Route::post('/attachment/task/{task}',[AttachmentController::class,'store']);
+
 
         /*
         |--------------------------------------------------------------------------

@@ -41,9 +41,9 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
-        'public_uploads' => [
+        'attachments' => [
             'driver' => 'local',
-            'root' => public_path() . '/uploads',
+            'root' => public_path() . '/attachments',
         ],
         's3' => [
             'driver' => 's3',
