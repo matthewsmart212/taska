@@ -44,12 +44,7 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        $array1 = $user->teams->pluck('title')->toArray();
-        $array2 = $project->teams->pluck('title')->toArray();
-
-        $result = array_intersect($array1, $array2);
-
-        return count($result) > 0;
+        return $project->users->contains('id',$user->id);
     }
 
     /**
