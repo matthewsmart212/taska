@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Group;
+use App\Models\User;
 
 class TaskController extends Controller
 {
     public function show(Project $project,Task $task)
     {
-        return view('projects.show',['task'=>$task,'project'=>$project]);
+        $usersAlreadyInProject = $project->users->pluck('id')->toArray();
+
+        $usersNotInProject = User::whereNotIn('id',$usersAlreadyInProject)->get();
+
+        return view('projects.show',['task'=>$task,'project'=>$project,'usersNotInProject'=>$usersNotInProject]);
     }
 
     public function store(Project $project)
