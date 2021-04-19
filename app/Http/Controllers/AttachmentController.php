@@ -16,6 +16,7 @@ class AttachmentController extends Controller
         if(Attachment::hasValidFileType($request))
         {
             $attributes['mime'] = $request->file('link')->getClientOriginalExtension();
+            $attributes['name'] = $request->file('link')->getClientOriginalName();
             $attributes['link'] = '/attachments/' . Storage::disk('attachments')->putFile('', $request->file('link'));
             $task->attachments()->create($attributes);
 

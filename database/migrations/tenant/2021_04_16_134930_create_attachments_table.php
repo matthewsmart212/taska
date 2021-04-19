@@ -16,6 +16,7 @@ class CreateAttachmentsTable extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
             $table->string('task_id');
+            $table->string('name');
             $table->string('link');
             $table->string('mime');
             $table->timestamps();
