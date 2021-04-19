@@ -24,7 +24,6 @@ class RegisterCompanyController extends Controller
         $id = $this->slugify(request('company_name'));
         $domain = $id .'.localhost';
 
-
         $tenant = Tenant::create(['id' => $id]);
         $tenant->domains()->create(['domain' => $domain]);
 

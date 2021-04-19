@@ -32,4 +32,11 @@ class AttachmentController extends Controller
 
         return Redirect($project->path());
     }
+
+    public function destroy(Attachment $attachment,Task $task)
+    {
+        $attachment->delete();
+
+        return redirect($task->path())->with('status','Attachment Successfully deleted.');
+    }
 }

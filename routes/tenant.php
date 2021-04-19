@@ -110,6 +110,7 @@ Route::middleware([
         |--------------------------------------------------------------------------
         */
         Route::post('/attachment/task/{task}',[AttachmentController::class,'store']);
+        Route::delete('/attachment/{attachment}/tasks/{task}', [AttachmentController::class,'destroy']);
 
 
         /*

@@ -41,6 +41,10 @@
                 @endswitch
             </div>
         @endforeach
+            <form id="delete-attachment" method="POST">
+                @csrf
+                <input type="text" name="_method" value="DELETE" hidden />
+            </form>
     </div>
     <div class="w-full pl-14 pr-6">
         <form method="POST" action="/attachment/task/{{ $task->id }}" enctype="multipart/form-data" class="bg-gray-100 p-4 border border-gray-300">
