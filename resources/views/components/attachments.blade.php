@@ -12,78 +12,33 @@
             <div>
                 @switch($attachment->mime)
                     @case('jpeg')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
                     @case('jpg')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
                     @case('jpe')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
                     @case('png')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
                     @case('gif')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'image'])
+                        @break
                     @case('pdf')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/pdf.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'pdf'])
+                        @break
                     @case('xls')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/xls.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'xls'])
+                        @break
                     @case('xlsx')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/xls.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'xlsx'])
+                        @break
                     @case('ppt')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/ppt.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'ppt'])
+                        @break
                     @case('pptx')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/ppt.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'pptx'])
+                        @break
                     @case('docx')
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/docx.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-                    @break
-
+                        @include('components.attachment',['type'=>'docx'])
+                        @break
                     @default
-                    <a href="{{ $attachment->link }}" target="_blank">
-                        <img src="/images/file.png" style="width:77px; height:77px;" class="mb-3" />
-                    </a>
-
+                        @include('components.attachment',['type'=>'file'])
                 @endswitch
-
             </div>
         @endforeach
     </div>
