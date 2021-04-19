@@ -1,3 +1,16 @@
+<div class="w-full flex p-6 pb-0 justify-between border-b border-gray-300 pb-3">
+    <div>
+        <div class="w-full inline-block">
+            <i class="far fa-comments"></i>
+            <strong class="ml-3">Comments</strong>
+        </div>
+    </div>
+    <div>
+        <span class="text-sm rounded-md cursor-pointer cancel-message font-semibold hidden">Cancel comment</span>
+        <span class="text-sm rounded-md cursor-pointer write-message font-semibold">Write comment</span>
+    </div>
+</div>
+
 <form method="POST" action="/tasks/{{ $task->id }}/comments" class="hidden" id="write-message">
     @csrf
     <div id="write-comment" class="py-6 shadow-sm border-b border-gray-300">
