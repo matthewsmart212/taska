@@ -30,7 +30,7 @@
         <h3 class="text-xs font-bold">File Name:</h3>
         <p>{{ $attachment->name }}</p>
         <a href="{{ $attachment->link }}" class="far fa-eye text-purple-300 hover:text-purple-600 p-2 pl-0 cursor-pointer"></a>
-        <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 cursor-pointer" onclick="toggleModal('delete-attachment')" data-attachment-id="{{ $attachment->id }}"></i>
+        <i class="fas fa-trash-alt text-red-300 hover:text-red-600 p-2 pl-0 cursor-pointer" onclick="toggleModal('delete-attachment')" data-attachment-id="{{ $attachment->id }}"></i>
         @include('modals.confirm-attachment-delete')
     </div>
 

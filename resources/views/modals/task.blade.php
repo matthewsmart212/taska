@@ -103,6 +103,21 @@
 <script>
     $('#attachment').click(function(){
         $('#attachment-section').removeClass('hidden');
+        $('#add-attachment').removeClass('hidden');
+    });
+
+    $('.fa-caret-square-down').click(function(){
+        $(this).addClass('hidden').next().removeClass('hidden');
+        $('#attachments').removeClass('hidden');
+    });
+
+    $('.fa-caret-square-up').click(function(){
+        $(this).addClass('hidden').prev().removeClass('hidden');
+        $('#attachments').addClass('hidden');
+    });
+
+    $('#add-new-attachment').click(function(){
+        $('#add-attachment').removeClass('hidden');
     });
 </script>
 

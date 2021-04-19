@@ -3,11 +3,15 @@
         <div>
             <div class="w-full inline-block">
                 <i class="fas fa-paperclip"></i>
-                <strong class="ml-3">Attachments</strong>
+                <strong class="ml-3">Attachments <i class="fas fa-plus-square text-gray-400 hover:text-gray-600 ml-1 text-sm cursor-pointer" id="add-new-attachment"></i></strong>
             </div>
         </div>
+        <div>
+            <i class="fas fa-caret-square-down text-gray-400 hover:text-gray-600 ml-1 text-sm cursor-pointer"></i>
+            <i class="fas fa-caret-square-up text-gray-400 hover:text-gray-600 ml-1 text-sm cursor-pointer hidden"></i>
+        </div>
     </div>
-    <div class="grid grid-cols-2 gap-3 pl-14 pr-6">
+    <div class="grid grid-cols-2 gap-3 pl-14 pr-6 hidden" id="attachments">
         @foreach($task->attachments as $attachment)
             <div>
                 @switch($attachment->mime)
@@ -46,7 +50,7 @@
                 <input type="text" name="_method" value="DELETE" hidden />
             </form>
     </div>
-    <div class="w-full pl-14 pr-6">
+    <div class="w-full pl-14 pr-6 hidden" id="add-attachment">
         <form method="POST" action="/attachment/task/{{ $task->id }}" enctype="multipart/form-data" class="bg-gray-100 p-4 border border-gray-300">
             @csrf
             <input type="file" name="link" />
