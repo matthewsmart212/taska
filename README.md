@@ -15,7 +15,7 @@ This is a portfolio project designed & built by Matthew Smart.
 - Multi Tenant support for creating,migrating and seeding new customer databases.
 - Users can be invited and can access a tenants Taska through a company subdomain.  
 - Projects can be made with custom backgrounds.
-- Custom groups/lists can be made for each project .
-- Tasks can be dragged between groups and ordered.
+- Custom groups/lists can be made for each project.
+- Tasks can be dragged between groups and ordered with AJAX requests.
 - Attachments & comments can be added to each task.
 
