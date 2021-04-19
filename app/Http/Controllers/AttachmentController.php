@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\Group;
+use App\Models\Attachment;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -12,18 +13,16 @@ class AttachmentController extends Controller
 {
     public function store(Task $task,Request $request)
     {
-        $attributes = request()->validate([
-            'link'=>'required|mimes:jpeg,jpg,jpe,png,gif,pdf,ppt,pptx,docx,xls,xlsx'
-        ]);
+        if(Attachment::hasValidFileType($request))
+        {
+            $attributes['mime'] = $request->file('link')->getClientOriginalExtension();
+            $attributes['link'] = '/attachments/' . Storage::disk('attachments')->putFile('', $request->file('link'));
+            $task->attachments()->create($attributes);
 
-        $mime = explode('/',$request->file('link')->getMimeType());
-
-        $attributes['mime'] = $mime[1];
-        $attributes['link'] = '/attachments/' . Storage::disk('attachments')->putFile('', $request->file('link'));
-
-        $task->attachments()->create($attributes);
-
-        return Redirect($task->path())->with('status','Attachment successfully added');
+            return Redirect($task->path())->with('status','Attachment successfully added');
+        }else{
+            return Redirect($task->path())->with('status','Sorry, we do not allow this file type to be uploaded');
+        }
     }
 
     public function update(Project $project,Group $group)

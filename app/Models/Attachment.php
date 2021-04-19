@@ -15,4 +15,27 @@ class Attachment extends Model
     {
         return $this->belongsTo(Task::class);
     }
+
+    public static function hasValidFileType($request)
+    {
+        switch ($request->file('link')->getClientOriginalExtension()) {
+            case 'jpeg':
+            case 'jpg':
+            case 'jpe':
+            case 'png':
+            case 'gif':
+            case 'pdf':
+            case 'ppt':
+            case 'pptx':
+            case 'docx':
+            case 'xls':
+            case 'xlsx':
+                $validFileType = true;
+                break;
+            default:
+                $validFileType = false;
+        }
+
+        return $validFileType;
+    }
 }
