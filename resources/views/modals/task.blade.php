@@ -82,49 +82,49 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-4 gap-3 pl-14 pr-6">
+                            <div class="grid grid-cols-6 gap-3 pl-14 pr-6">
                                 @foreach($task->attachments as $attachment)
                                     <div>
                                         @switch($attachment->mime)
                                             @case('jpeg')
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
                                             @break
 
                                             @case('jpg')
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
                                             @break
 
                                             @case('jpe')
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
                                             @break
 
                                             @case('png')
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
                                             @break
 
                                             @case('gif')
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="{{ $attachment->link }}" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="{{ $attachment->link }}" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
                                             @break
 
                                             @case('pdf')
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="/images/pdf.png" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="/images/pdf.png" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
                                             @break
 
                                             @default
                                                 <a href="{{ $attachment->link }}" target="_blank">
-                                                    <img src="/images/file.png" style="width:121px; height:121px;" class="mb-3" />
+                                                    <img src="/images/file.png" style="width:77px; height:77px;" class="mb-3" />
                                                 </a>
 
                                         @endswitch
